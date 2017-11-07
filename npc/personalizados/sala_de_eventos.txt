@@ -1,0 +1,19 @@
+prontera,140,182,5	script	Sala de Eventos	108,{
+
+mes "[Porteiro Sala de Eventos]";
+mes "Olá ^5566FF"+strcharinfo(0)+"^000000. Você deseja entrar na sala de eventos ?";
+next;
+menu "Sim",sim,"Não",cancelar;
+
+sim:
+mes "[Porteiro Sala de Eventos]";
+mes "Boa sorte, ^5566FF"+strcharinfo(0)+"^000000!";
+next;
+warp "sec_in01",177,34;
+close;
+
+cancelar:
+mes "[Porteiro Sala de Eventos]";
+mes "Tudo bem, ^5566FF"+strcharinfo(0)+"^000000, fale comigo quando quiser ir á sala de eventos.";
+close;
+}

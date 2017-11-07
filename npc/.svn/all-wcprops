@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/brAthena/brAthena/!svn/ver/463/trunk/npc
+END
+scripts_guild.conf
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/462/trunk/npc/scripts_guild.conf
+END
+MOTD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/brAthena/brAthena/!svn/ver/156/trunk/npc/MOTD.txt
+END
+scripts_custom.conf
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/359/trunk/npc/scripts_custom.conf
+END
+scripts_mapflags.conf
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/scripts_mapflags.conf
+END
+scripts_monsters.conf
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/42/trunk/npc/scripts_monsters.conf
+END
+scripts_warps.conf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/96/trunk/npc/scripts_warps.conf
+END
+scripts_jobs.conf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/206/trunk/npc/scripts_jobs.conf
+END
+scripts_dev.conf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/1/trunk/npc/scripts_dev.conf
+END
+scripts.conf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/169/trunk/npc/scripts.conf
+END

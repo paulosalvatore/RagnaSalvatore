@@ -1,0 +1,131 @@
+prontera,147,172,5	script	Plagiador de Habilidades	730,{
+set .npcname$[0], "[Plagiador de Habilidades]";
+if(#pegouskill >= 1){
+mes .npcname$[0];
+mes "Vejo que você já pegou sua habilidade.";
+mes "Só é permitido pegar uma skill por vez... Caso queira trocar de habilidade, é só relogar.";
+mes "Até mais!";
+close;
+}
+ 
+mes .npcname$[0];
+mes "Olá ^339966"+strcharinfo(0)+"!!^000000 ";
+mes "Sou o ^FF0000Plagiador de Habilidades^000000.";
+ 
+next;
+mes .npcname$[0];
+mes "Eu tenho uma lista com algumas habilidades e magias que podem ser ^FF0000copiadas^000000.";
+mes "Basta escolher uma habilidade ou magia da lista que eu copio para você.";
+next;
+mes .npcname$[0];
+mes "Mas primeiro deixa eu verificar se você realmente é um ^FF0000Arruaceiro/Desordeiro^000000...";
+next;
+ 
+if(Class != 4018) goto nstk;
+mes .npcname$[0];
+mes "Hmmm...Muito bom.";
+mes "Vi que você é um ^339966Stalker^000000 legítimo. Deve se orguhar muito disto...";
+mes "Bom, agora escolha uma opção da lista abaixo para que eu copie ela para você.";
+next;
+ 
+menu"Esfera d'Água",es,"Fogo Grego",fo,"Grande Floco de Neve",ne,"Impacto de Tyr",ty,"Lamina de Vento",la,"Laminas Congelantes",co,"Pétalas de Flamejantes",pe,"Terror Ácido",ad,"Nada Talvez mais tarde...",na;
+close;
+ 
+es:
+mes .npcname$[0];
+mes"Pronto você já está plagiado.";
+mes "Até mais!";  
+skill 86,5,0;
+skilleffect 86, 86;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+fo:
+mes .npcname$[0];
+mes"pronto você já está plagiado";
+mes "Até mais";  
+skill 229,5,0;
+skilleffect 229, 229;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+ne:
+mes .npcname$[0];
+mes"pronto você já está plagiado";
+mes "Até mais";  
+skill 539,5,0;
+skilleffect 539, 539;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+ty:
+mes .npcname$[0];
+mes"pronto você já está plagiado";
+skill 62,10,0;
+skilleffect 62, 62;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+ 
+la:
+mes .npcname$[0];
+mes"pronto você já está com a plagiado";
+skill 540,10,0;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+co:
+mes .npcname$[0];
+mes"pronto você já está com a plagiado";  
+skill 537,10,0;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+pe:
+mes .npcname$[0];
+mes"pronto você já está com a plagiado";
+skill 534,10,0;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+ad:
+mes .npcname$[0];
+mes"pronto você já está com a plagiado";
+skill 230,5,0;
+emotion 51;
+atcommand "@useskill 475 10 "+strcharinfo(0);
+set #pegouskill,1;
+close;
+ 
+na:
+mes .npcname$[0];
+mes "estarei aqui novamente se precisar";
+mes "Até mais";
+emotion 20;
+close;
+ 
+nstk:
+mes .npcname$[0];
+mes "Desculpe"+strcharinfo(0)+" mas você não e um verdadeiro Stalker !";
+close;
+} 
+ 
+-	script	limpador	-1,{
+OnPCLogoutEvent:
+set #pegouskill,0;
+end;
+}

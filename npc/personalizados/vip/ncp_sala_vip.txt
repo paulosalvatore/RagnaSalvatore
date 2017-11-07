@@ -1,0 +1,368 @@
+sec_in01,176,179,3	script	Utilidades Vip	726,{
+	goto Talk;
+
+OnInit:
+
+//== CONFIGURAÇÕES ========================================
+	
+	.Name$ = "Exclusivo Vip";	// Nome do NPC
+	.VipGroup = 1;			// Nível de grupo para ser considerado VIP.
+	
+	.ResetCost = 10;	// Custo de Zeny necessário para resetar.
+	
+	setarray $@MaxSaves[0],3,10; // Número máximo de builds a serem salvas, o primeiro número é para não Vips e o segundo para Vips.
+
+
+//== FIM DAS CONFIGURAÇÕES ================================
+	
+	end;
+
+Talk:
+	if (getgroupid() < .VipGroup) {
+		mes "[" + .Name$ + "]";
+		mes "Você não é VIP, portanto não pode usar meus serviços.";
+		close;
+	}
+	mes "[" + .Name$ + "]";
+	mes "Olá, já vi que você é um jogador VIP.";
+	mes "Como posso lhe ajudar?";
+	next;
+	switch(select("Removedor de cartas.", "Resetador.", "Anuciador Global.", "Cancelar")) {
+		case 1:
+			disable_items;
+			if (MaxWeight - Weight < 10000) {
+				mes "[" + .Name$ + "]";
+				mes "Não pode continuar porque você tem muitos objetos pesados. Vamos tentar continuar após a redução do peso.";
+				close;
+			}
+			callfunc "F_REMOVERCARTAS",getgmlevel();
+		case 2:
+			mes "[" + .Name$ + "]";
+			mes "Resetar vai custar " + .ResetCost + " zenys";
+			next;
+			if (Zeny < .ResetCost) {
+				mes "[" + .Name$ + "]";
+				mes "Você não tem " + .ResetCost + " zenys.";
+				mes "Tsc... Está tentando me enganar?";
+				mes "Saia já daqui!";
+				close;
+			}
+			mes "[" + .Name$ + "]";
+			mes "O que deseja resetar?";
+			next;
+			switch(select("Atributos.", "Habilidades.", "Cancelar")) {
+				case 1:
+					Zeny -= .ResetCost;
+					resetstatus;
+					mes "[" + .Name$ + "]";
+					mes "Até a próxima vez!";
+					close;
+				case 2:
+					Zeny -= .ResetCost;
+					resetskill;
+					mes "[" + .Name$ + "]";
+					mes "Até a próxima vez!";
+					close;
+				case 3:
+					mes "[" + .Name$ + "]";
+					mes "Volte quando precisar";
+					mes "de meus serviços ^^.";
+					close;
+			}
+		case 3:
+			mes "[" + .Name$ + "]";
+			mes "Olá, ^0000FF"+strcharinfo(0)+"^000000 Deseja Anunciar?";
+			next;
+			switch(select("Sim.", "Não me faça perder tempo!", "Cancelar")) {
+				case 1:
+					mes "[" + .Name$ + "]";
+					mes "Você precisa de^008000 100000 Zeny^000000.";
+					mes "Você tem ^FF0000" + Zeny + "^000000 de zeny.";
+					next;
+					if (Zeny < 10000) {
+						mes "[" + .Name$ + "]";
+						mes "Larga a mão de ser pão duro! Preciso de 10,000 zeny para anunciar.";
+						close;
+					}
+					mes "[" + .Name$ + "]";
+					mes "Escolha a cor:";
+					next;
+					switch(select("- Vermelho:- Preto:- Amarelo:- Azul:- Verde:- Roxo:- Cinza")) {
+						case 1:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,0xD20000;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 2:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,0x000000;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 3:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,bc_yellow;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 4:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,bc_blue;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 5:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,0x99CC00;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 6:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,0xCC00FF;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+						case 7:
+							mes "[" + .Name$ + "]";
+							mes "Digite sua mensagem:";
+							next;
+							input @mensagem$;
+							announce strcharinfo(0) + " : "+@mensagem$,bc,0xBAB9B9;
+							Zeny -= 10000;
+							mes "[" + .Name$ + "]";
+							mes "Mensagem enviada com sucesso!";
+							close;
+					}							
+				case 2:
+				case 3:
+					mes "[" + .Name$ + "]";
+					mes "Volte quando quiser.";
+					close;
+			}
+		case 4:
+			close;
+	}
+}
+function	script	F_REMOVERCARTAS	{
+	mes "[Removedor de Cartas]";
+	mes "Olá...";
+	mes "Bem vindo ao novo sistema de recomorção de cartas.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Nosso sistema foi aprimorado e agora dispomos de mais opções para você.";
+	mes "O que deseja fazer?";
+	next;
+	menu "Mais informações",info,"Remover cartas",removercartas,"Nada...",fim;
+ 
+info:
+	mes "[Removedor de Cartas]";
+	mes "Nosso novo sistema agora possui várias opções para você.";
+	mes "Vejamos as novidades...";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Agora você pode pagar tanto com CASH como com ZENY.";
+	mes "-A chance do equipamento e cartas serem destruídos diminuiu.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Se você for VIP a chance de perder cartas é zero.";
+	mes "-Retiramos qualquer carta de todos os tipos de equipamentos.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Cartas de MVP não necessitam de itens especiais para serem removidas, apenas custam o dobro do preço.";
+	mes "-Sem risco de perda de refinamento.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Aqui estão os preços:";
+	mes "-Em Zeny -> 100.000z";
+	mes "-Em Cash -> 2c (ROPs)";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Estamos trabalhando em mais melhorias.";
+	mes "Enquanto isso aproveite nosso NOVO sistema de remorção de cartas.";
+	close2;
+	end;
+ 
+removercartas:
+	set .@preco_c,2; //preço em CASH
+	set .@preco_z,100000; //preço em Zeny
+	set .@pcnt_de,30; //porcentagem do equipamento ser destruído
+	set .@pcnt_dc,30; //porcentagem da carta ser destruída
+	set @usar_cash,0; //checagem se o jogador vai usar cash como pagamento
+	set @mult_preco,1; //valor a ser multiplicado ao valor total do serviço. Caso a carta seja de um MVP o preço será duplicado
+	setarray @menu$,""; //menu que guardará os itens que estão equipados no jogador
+	setarray @equip_ident$[0],"Capacete","Armadura","Arma Esquerda","Arma Direita/Escudo","Manto","Botas","Acessório Esquerdo","Acessório Direito","Mascara/Óculos","Mascara/Asas/Aura";
+	setarray .@equip_slot[0], EQI_HEAD_TOP,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_HEAD_MID,EQI_HEAD_LOW;
+	
+	for(set .@i,0; .@i<getarraysize(.@equip_slot); set .@i,.@i+1) {
+	if(getequipisequiped(.@equip_slot[.@i])){
+	set @menu$,@menu$+getequipname(.@equip_slot[.@i])+":";
+	}else{
+	set @menu$,@menu$+"^999999"+@equip_ident$[.@i]+" (Vazio)^000000:";
+	}
+	}
+	
+	if(@menu$ == ""){
+	mes "[Removedor de Cartas]";
+	mes "Desculpe, mas você não tem nada equipado no momento.";
+	close;
+	}
+	mes "[Removedor de Cartas]";
+	mes "De qual equipamento você deseja retirar a(s) carta(s)?";
+	next;
+	set .@i,select("Nenhum:"+@menu$);
+	switch(.@i){
+	case 1:
+	mes "[Removedor de Cartas]";
+	mes "É sempre um prazer serví-lo.";
+	mes "Não esqueça de olhar as novidade de nosso NOVO sistema de recomorção de cartas.";
+	close;
+	break;
+	default:
+	set @equip_num,.@equip_slot[.@i-2];
+	if(!getequipisequiped(@equip_num)){
+	mes "[Removedor de Cartas]";
+	mes "Não há nada aqui. Talvez você tenha retirado o equipamento.";
+	close;
+	}
+	break;
+	}
+	
+	setarray .@equip_card,getequipcardid(@equip_num,0),getequipcardid(@equip_num,1),getequipcardid(@equip_num,2),getequipcardid(@equip_num,3);
+	for(set .@i,0; .@i<4; set .@i,.@i+1) {
+	if (.@equip_card[.@i] >= 4700) // Armor Enchant System
+	set .@equip_card[.@i],0;
+	}
+	
+	if (.@equip_card[0] <= 0 && .@equip_card[1] <= 0 && .@equip_card[2] <= 0 && .@equip_card[3] <= 0){
+	mes "[Removedor de Cartas]";
+	mes "O equipamento que você escolheu não contem nenhuma carta.";
+	mes "Escolha um que tenha carta(s) e poderei trabalhar.";
+	close;
+	}
+	
+	set .@mvp_list$,
+	"|4408|4128|4456|4168|4142"+  //Gloom_Under_Night_Card, Golden_Bug_Card, Nidhogg_Shadow_Card, Dark_Lord_Card, Doppelganger_Card
+	"|4134|4137|4386|4407|4357"+  //Dracula_Card, Drake_Card, Detale_Card, Randgris_Card, B_Seyren_Card
+	"|4146|4132|4147|4372|4145"+  //Maya_Card, Mistress_Card, Baphomet_Card, Bacsojin_Card, Berzebub_Card
+	"|4374|4352|4367|4236|4425"+  //Apocalips_H_Card, B_Ygnizem_Card, B_Shecil_Card, Amon_Ra_Card, Atroce_Card
+	"|4359|4123|4144|4135|4143"+  //B_Eremes_Card, Eddga_Card, Osiris_Card, Orc_Load_Card, Orc_Hero_Card
+	"|4263|4131|4430|4276|4419"+  //Incant_Samurai_Card, Moonlight_Flower_Card, Ifrit_Card, Lord_Of_Death_Card, Ktullanux_Card
+	"|4403|4399|4376|4441|4302"+  //Kiel_Card, Thanatos_Card, Lady_Tanee_Card, Fallen_Bishop_Card, Tao_Gunka_Card
+	"|4305|4148|4318|4121|4365"+  //Turtle_General_Card, Pharaoh_Card, Knight_Windstorm_Card, Phreeoni_Card, B_Katrinn_Card
+	"|4363|4324|4361|4330|4342|"; //B_Magaleta_Card, Garm_Card, B_Harword_Card, Dark_Snake_Lord_Card, Rsx_0806_Card
+	if ((.@equip_card[0] && compare(.@mvp_list$,"|"+.@equip_card[0]+"|")) ||
+	(.@equip_card[1] && compare(.@mvp_list$,"|"+.@equip_card[1]+"|")) ||
+	(.@equip_card[2] && compare(.@mvp_list$,"|"+.@equip_card[2]+"|")) ||
+	(.@equip_card[3] && compare(.@mvp_list$,"|"+.@equip_card[3]+"|")))
+	set @mult_preco,2;
+	
+	mes "[Removedor de Cartas]";
+	mes "Que forma de pagamento você deseja usar?";
+	next;
+	if(select("Zeny (100.000z):Cash (2c [ROPs])") == 2){
+	set @usar_cash,1;
+	}
+	
+	if(@usar_cash){
+	if(#CASHPOINTS < .@preco_c * @mult_preco){
+	mes "[Removedor de Cartas]";
+	mes "Você não tem Cash sulficiente para esse serviço.";
+	close;
+	}
+	set #CASHPOINTS,#CASHPOINTS - (.@preco_c * @mult_preco);
+	}else{
+	if(Zeny < .@preco_c * @mult_preco){
+	mes "[Removedor de Cartas]";
+	mes "Você não tem Zeny sulficiente para esse serviço.";
+	close;
+	}
+	set Zeny,Zeny - (.@preco_c * @mult_preco);
+	}
+	
+	set .@equip_id, getequipid(@equip_num);
+	set .@equip_refine, getequiprefinerycnt(@equip_num);
+	set .@broken_equi,1;
+	set .@card_break,0;
+	delequip @equip_num;
+	
+	if(rand(0,100) > .@pcnt_de){
+	set .@broken_equi,0;
+	getitem2 .@equip_id,1,1,.@equip_refine,0,0,0,0,0;
+	}
+	
+	for(set .@i,0; .@i<4; set .@i, .@i+1){
+	if (.@equip_card[.@i]) {
+	if(rand(0,100) > .@pcnt_dc || getarg(0))
+	getitem .@equip_card[.@i],1;
+	else
+	set .@card_break,1;
+	
+	}
+	}
+	
+	if (!.@broken_equi && .@card_break)
+	specialeffect2 EF_LORD;
+	else if (.@broken_equi && .@card_break)
+	specialeffect2 EF_SUI_EXPLOSION;
+	else if (!.@broken_equi && !.@card_break)
+	specialeffect2 EF_FIREPILLAR;
+	else
+	specialeffect2 EF_MAXPOWER;
+	
+	mes "[Removedor de Cartas]";
+	mes "-- Resultado da Separação de Carta --";
+	if (!.@broken_equi) {
+	mes "Rachadura não ocorreu durante o processo de separação de carta.";
+	mes "^0000FFSeparação de equipamento foi normal.^000000";
+	} else {
+	mes "Rachadura ocorreu durante o processo de separação carta.";
+	mes "Equipamento foi danificado. ^ff0000Irrecuperável.^000000";
+	}
+	mes "-------------------";
+	if (!.@card_break) {
+	mes "Erosão da superfície não ocorreu durante o processo de separação da carta.";
+	mes "^0000ffSeparação de carta bem-sucedida.^000000";
+	} else {
+	mes "Erosão da superfície ocorreu durante o processo de separação cartão.";
+	mes "A carta foi danificada. ^ff0000Irrecuperável.^000000";
+	}
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Isso é tudo...";
+	mes "Volte sempre!";
+	close2;
+	end;
+ 
+fim:
+	mes "[Removedor de Cartas]";
+	mes "É sempre um prazer serví-lo.";
+	mes "Não esqueça de olhar as novidade de nosso NOVO sistema de recomorção de cartas.";
+	close2;
+	end;
+}

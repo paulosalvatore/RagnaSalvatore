@@ -1,0 +1,26 @@
+-	cashshop	cs1	-1,5016:35000,5016:30000
+
+-	cashshop	cs2	-1,5016:18000,5016:18000
+
+-	cashshop	cs3	-1,5016:18000,5016:18000
+
+-	cashshop	cs4	-1,5016:12500,5016:12500
+
+-	cashshop	cs5	-1,5016:12500,5016:12500
+
+-	cashshop	cs6	-1,5016:12500,5016:12500
+
+
+prontera,164,175,3	script	Loja de ROPs!	873,{
+
+	switch(select("- Hat","- Baixo","- Meio","- Acessorios","- VIP","- Itens Diversos","- Fechar")){
+		case 1: callshop "cs1",0; end;
+		case 2: callshop "cs2",0; end;
+		case 3: callshop "cs3",0; end;
+		case 4: callshop "cs4",0; end;
+		case 5: callshop "cs5",0; end;
+		case 6: callshop "cs6",0; end;
+		case 7: end;
+	
+	}
+}

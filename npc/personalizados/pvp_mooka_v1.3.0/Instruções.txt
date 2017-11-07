@@ -1,0 +1,11 @@
+OBS: Abrir tudo em Notepad++
+
+Primeiro Passo Instalar Tabela SQL
+
+Segundo Passo Instalar Tabela de Linguagem
+
+Terceiro Passo Instalar Npc "pvp_mooka_v1.3.0"
+
+Quarto Passo Colocar Arquivo de Som na data
+
+Quinto Passo Ativar PMU_Sounds.grf em (DATA.INI)

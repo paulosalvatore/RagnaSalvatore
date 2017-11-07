@@ -1,0 +1,53 @@
+prontera,147,192,5	script	Resetadora	4_F_TELEPORTER,{
+
+	set .@ResetStat,0;	// Zeny requeridos para resetar atributos.
+	set .@ResetSkill,0;	// Zeny requeridos para resetar habilidades.
+	set .@ResetBoth,0;	// Zeny requeridos para resetar ambos.
+
+	mes "[Resetadora]";
+	mes "Olá "+strcharinfo(0)+", eu sou a Resetadora.";
+	mes "Resetar Atributos: "+ .@ResetStat +"z";
+	mes "Resetar Habilidades: "+ .@ResetSkill +"z";
+	mes "Resetar Ambos: "+ .@ResetBoth +"z";
+	mes "Por favor, selecione o serviço que deseja:";
+	next;
+	switch(select("^FF3355Resetar Habilidades:Resetar Atributos:Resetar Ambos^000000:Cancelar")) {
+	case 1:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetSkill) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetSkill;
+		sc_end SC_ALL;
+		resetskill;
+		mes "Pronto Atributos resetados, volte quando precisar de algum serviço.";
+		close;
+	case 2:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetStat) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetStat;
+		resetstatus;
+		mes "Pronto Habilidades resetadas, volte quando precisar de algum serviço.";
+		close;
+	case 3:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetBoth) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetBoth;
+		sc_end SC_ALL;
+		resetskill;
+		resetstatus;
+		mes "Pronto seus Atributos e suas Habilidades foram resetadas, volte quando precisar de algum serviço.";
+		close;
+	case 4:
+		mes "[Resetadora]";
+		mes "Tudo bem, volte quando precisar de algum serviço.";
+		close;
+	}
+}

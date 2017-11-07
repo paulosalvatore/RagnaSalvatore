@@ -1,0 +1,1064 @@
+prontera,159,190,4	script	Utidades Master	811,{
+	goto Talk;
+
+OnInit:
+
+//== CONFIGURAÇÕES ========================================
+	
+	.Name$ = "Utidades Master";	// Nome do NPC
+	.VipGroup = 0;			// Nível de grupo para ser considerado VIP.
+	
+	.ResetCost = 10;	// Custo de Zeny necessário para resetar.
+	
+	setarray $@MaxSaves[0],3,10; // Número máximo de builds a serem salvas, o primeiro número é para não Vips e o segundo para Vips.
+
+
+//== FIM DAS CONFIGURAÇÕES ================================
+	
+	end;
+
+Talk:
+	if (getgroupid() < .VipGroup) {
+		mes "[" + .Name$ + "]";
+		close;
+	}
+	mes "[" + .Name$ + "]";
+	mes "Olá, ^CD3333"+strcharinfo(0)+"^000000, posso ajuda-lo?";
+	mes "^CD3333[Removedor de cartas]^000000";
+	mes "^CD3333[Resetador]^000000";
+	mes "^CD3333[Garota Negociadora]^000000";
+	mes "^CD3333[Habilidades de Platina]^000000";
+	mes "^CD3333[Estilista]^000000";
+	mes "^CD3333[Encantador]^000000";
+	mes "Gostaria de usar meus serviços?";
+	if(select("Sim.:Não.") ==2) close;
+	next;
+	switch(select("Removedor de cartas.", "Resetador.", "Garota Negociadora.", "Habilidades de Platina.","Estilista", "Encantador", "Cancelar")) {
+		case 1:
+			disable_items;
+			if (MaxWeight - Weight < 10000) {
+				mes "[" + .Name$ + "]";
+				mes "Não pode continuar porque você tem muitos objetos pesados. Vamos tentar continuar após a redução do peso.";
+				close;
+			}
+			callfunc "F_REMOVERCARTAS",getgmlevel();
+		case 2:
+			set .@ResetStat,100000;	// Zeny requeridos para resetar atributos.
+	set .@ResetSkill,100000;	// Zeny requeridos para resetar habilidades.
+	set .@ResetBoth,150000;	// Zeny requeridos para resetar ambos.
+
+	mes "[Resetadora]";
+	mes "Olá "+strcharinfo(0)+", eu sou a Resetadora.";
+	mes "Resetar Atributos: "+ .@ResetStat +"z";
+	mes "Resetar Habilidades: "+ .@ResetSkill +"z";
+	mes "Resetar Ambos: "+ .@ResetBoth +"z";
+	mes "Por favor, selecione o serviço que deseja:";
+	next;
+	switch(select("^FF3355Resetar Habilidades:Resetar Atributos:Resetar Ambos^000000:Cancelar")) {
+	case 1:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetSkill) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetSkill;
+		sc_end SC_ALL;
+		resetskill;
+		mes "Pronto Atributos resetados, volte quando precisar de algum serviço.";
+		close;
+	case 2:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetStat) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetStat;
+		resetstatus;
+		mes "Pronto Habilidades resetadas, volte quando precisar de algum serviço.";
+		close;
+	case 3:
+		mes "[Resetadora]";
+		if (Zeny < .@ResetBoth) {
+			mes "Desculpe-me, mas você não possui zeny suficiente para esta tarefa.";
+			close;
+		}
+		Zeny -= .@ResetBoth;
+		sc_end SC_ALL;
+		resetskill;
+		resetstatus;
+		mes "Pronto seus Atributos e suas Habilidades foram resetadas, volte quando precisar de algum serviço.";
+		close;
+	case 4:
+		mes "[Resetadora]";
+		mes "Tudo bem, volte quando precisar de algum serviço.";
+		close;
+	}		
+case 3:
+	{
+	mes "^FF1493[ Garota Negociante ]^000000";
+	mes "Aqui você pode alugar Falcões, PecoPecos ou Carrinhos.";
+	if(getarraysize(.preco)){
+		mes "^0084ff[ • ]^000000 Falcões:  ^0000FF"+.preco[1]+"z^000000";
+		mes "^0084ff[ • ]^000000 PecoPeco: ^0000FF"+.preco[2]+"z^000000";
+		mes "^0084ff[ • ]^000000 Carrinho: ^0000FF"+.preco[3]+"z^000000";
+	}
+	next;
+	if(select("^0084ff[ • ]^000000 Pegar Falcão:^0084ff[ • ]^000000 Pegar PecoPeco:^0084ff[ • ]^000000 Pegar Carrinho:^ff0000[ • ]^000000 Nada por enquanto.")==4) close;
+	mes "^FF1493[ Garota Negociante ]^000000";
+	if(!getskilllv(.skillid[@menu-1])){
+		mes "Você não tem a habilidade necessária para isso.";
+		close;
+	}
+	if(Zeny<.preco[@menu]){
+		mes "Você não possui Zeny suficiente.";
+		close;
+	}
+	switch(@menu){
+	case 1:
+		if(checkfalcon()){ mes "Você já possui um Falcão."; close; }
+		setfalcon();
+		break;
+	case 2:
+		if(checkmount()){ mes "Você já possui um PecoPeco."; close; }
+		setmount();
+		break;
+	case 3:
+		if(checkcart()){ mes "Você já possui um Carrinho."; close; }
+		setcart();
+	}
+	set Zeny,Zeny-.preco[@menu];
+	mes "Aqui está.";
+	mes "Faça bom uso dele.";
+	close;
+}
+case 4:
+	{
+	mes "^FF1493[ Habilidades Extras ]^000000";
+	mes (gettime(3)>= 6&&gettime(3)<= 12?"Bom-dia":(gettime(3)>=13&&gettime(3)<=18?"Boa-tarde":"Boa-noite"))+", ^008aff"+strcharinfo(0)+"^000000 !";
+	mes "Eu posso dar-lhe habilidades extras que estão disponíveis para sua classe.";
+	mes "Deseja receber suas habilidades extras agora?";
+	next;
+	if (select("^0084ff[ • ]^000000 Sim, Por favor:^ff0000[ • ]^000000 Não, Obrigado") == 2) {
+		mes "^FF1493[ Habilidades Extras ]^000000";
+		mes "Tenha um bom dia... >.>";
+		close;
+	}
+	skill 142,1,0;
+	switch(BaseClass) {
+		case 0: if (Class !=23) skill 143,1,0; break;
+		case 1: skill 144,1,0; skill 145,1,0; skill 146,1,0; break;
+		case 2: skill 157,1,0; break;
+		case 3: skill 147,1,0; skill 148,1,0; break;
+		case 4: skill 156,1,0; break;
+		case 5: skill 153,1,0; skill 154,1,0; skill 155,1,0; break;
+		case 6: skill 149,1,0; skill 150,1,0; skill 151,1,0; skill 152,1,0; break;
+		default: break;
+	}
+	switch(BaseJob) {
+		case 7: skill 1001,1,0; break;
+		case 8: skill 1014,1,0; break;
+		case 9: skill 1006,1,0; break;
+		case 10: skill 1012,1,0; skill 1013,1,0; break;
+		case 11: skill 1009,1,0; break;
+		case 12: skill 1003,1,0; skill 1004,1,0; break;
+		case 14: skill 1002,1,0; break;
+		case 15: skill 1015,1,0; skill 1016,1,0; break;
+		case 16: skill 1007,1,0; skill 1008,1,0; skill 1017,1,0; skill 1018,1,0; skill 1019,1,0; break;
+		case 17: skill 1005,1,0; break;
+		case 18: skill 238,1,0; break;
+		case 19: skill 1010,1,0; break;
+		case 20: skill 1011,1,0; break;
+		default: break;
+	}
+	mes "^FF1493[ Habilidades Extras ]^000000";
+	mes "Pronto, você já recebeu suas habilidades extra.";
+	close;
+}
+case 5:
+{
+set .npcname$, "^FF8C00Estilista: ^000000"; //Nome que irá aparecer nas falas do NPC
+	
+	set .vip_needed, 1; //Nível necessário de VIP para acessar os recursos especias do NPC
+	
+	set .max_v_hstyle, 65; //Número máximo de estilos de cabelo para jogadores VIP
+	set .max_v_hcolor, 265; //Número máximo de cores de cabelo para jogadores VIP
+	set .max_v_ccolor, 559; //Número máximo de cores de roupa para jogadores VIP
+	
+	set .novip_can_acess, 0; //Jogadores não-VIP poderão acessar os menus de salvamento e carregamento de estilos? (1 para sim, 0 para não)
+	
+	set .max_hstyle, 65; //Número máximo de estilos de cabelo para jogadores comuns
+	set .max_hcolor, 265; //Número máximo de cores de cabelo para jogadores comuns
+	set .max_ccolor, 559;	 //Número máximo de cores de roupa para jogadores comuns
+	
+	//Número mínimo para estilos e cores para todos jogadores
+	set .min_hstyle, 0;
+	set .min_hcolor, 0;
+	set .min_ccolor, 0;
+	
+	set .max_sns, 10; //Número máximo de caracteres aceitos para os nomes dos estilos
+
+//==============================================================
+//==============================================================
+	
+	mes .npcname$;
+	mes "Olá, eu sou o Estilista, eu posso alterar sua aparência com muitos e variados estilos e cores de roupa e cabelo.";
+	next;
+	goto menu1;
+	
+	menu1 : {
+		set @hstyle, getlook (1);
+		set @hcolor, getlook (6);
+		set @ccolor, getlook (7);
+		
+		if (.novip_can_acess == 0) {
+			if (getgmlevel () < .vip_needed) {
+				set .save_style$, "";
+				set .load_style$, "";
+			} else {
+				set .save_style$, "- Salvar estilo.";
+				set .load_style$, "- Carregar estilo.";
+			}
+		} else {
+			set .save_style$, "- Salvar estilo.";
+			set .load_style$, "- Carregar estilo.";
+		}
+		mes .npcname$;
+		mes "Vejo que está utilizando um estilo bem interessante...";
+		mes "Estilo de cabelo: ^FF0000"+@hstyle+"^000000.";
+		mes "Cor do cabelo: ^FF0000"+@hcolor+"^000000.";
+		mes "Cor da roupa: ^FF0000"+@ccolor+"^000000.";
+		mes "Em que posso lhe ser útil?";
+		next;
+		menu "- Alterar estilo do cabelo.",c_hstyle,"- Alterar cor do cabelo.",c_hcolor,"- Alterar cor da roupa.",c_ccolor,.save_style$,save_style,.load_style$,load_style,"- Sair.",L_end;
+	}
+	
+	c_hstyle: {
+		mes .npcname$;
+		mes "Seu estilo de cabelo atual é o de número : ^FF0000"+@hstyle+"^000000.";
+		mes "O que acha?";
+		next;
+		switch (select ("- Próximo.:- Anterior.:- Escolher número.:- Gostei deste.")) {
+			case 1: { //Próximo
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						if (@hstyle >= .max_hstyle) {
+							mes .npcname$;
+							mes "Seu estilo de cabelo já é o último que possuo em meu catálogo.";
+							next;
+							goto c_hstyle;
+						} else {
+							setlook 1,@hstyle+1;
+							set @hstyle, getlook (1);
+							specialeffect2 54,strcharinfo(0);
+							goto c_hstyle;
+						}
+					} else {
+						if (@hstyle >= .max_v_hstyle) {
+							mes .npcname$;
+							mes "Seu estilo de cabelo já é o último que possuo em meu catálogo.";
+							next;
+							goto c_hstyle;
+						} else {
+							setlook 1,@hstyle+1;
+							set @hstyle, getlook (1);
+							specialeffect2 54,strcharinfo(0);
+							goto c_hstyle;
+						}
+					}
+				} else {
+					if (@hstyle >= .max_hstyle) {
+						mes .npcname$;
+						mes "Seu estilo de cabelo já é o último que possuo em meu catálogo.";
+						next;
+						goto c_hstyle;
+					} else {
+						setlook 1,@hstyle+1;
+						set @hstyle, getlook (1);
+						specialeffect2 54,strcharinfo(0);
+						goto c_hstyle;
+					}
+				}
+			}
+			case 2: { //Anterior
+				if (@hstyle == .min_hstyle ) {
+					mes .npcname$;
+					mes "Seu estilo de cabelo já é o primeiro que possuo em meu catálogo.";
+					next;
+					goto c_hstyle;
+				} else {
+					setlook 1,@hstyle-1;
+					set @hstyle, getlook (1);
+					specialeffect2 54,strcharinfo(0);
+					goto c_hstyle;
+				}
+			}
+			case 3: { //Escolher Número
+				mes .npcname$;
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						mes "Escolha um número entre ^FF0000"+.min_hstyle+"^000000 e ^FF0000"+.max_hstyle+"^000000.";
+						next;
+						input @input,.min_hstyle,.max_hstyle;
+						setlook 1,@input;
+						set @hstyle, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_hstyle;
+					} else {
+						mes "Escolha um número entre ^FF0000"+.min_hstyle+"^000000 e ^FF0000"+.max_v_hstyle+"^000000.";
+						next;
+						input @input,.min_hstyle,.max_v_hstyle;
+						setlook 1,@input;
+						set @hstyle, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_hstyle;
+					}
+				} else {
+					mes "Escolha um número entre ^FF0000"+.min_hstyle+"^000000 e ^FF0000"+.max_hstyle+"^000000.";
+					next;
+					input @input,.min_hstyle,.max_hstyle;
+					setlook 1,@input;
+					set @hstyle, @input;
+					specialeffect2 54,strcharinfo(0);
+					goto c_hstyle;
+				}
+			}
+			case 4: { //Gostei deste
+				mes .npcname$;
+				mes "Que bom que gostou, deseja mais algo?";
+				next;
+				if (select ("- Sim.:- Não.") == 1) {
+					goto menu1;
+				} else {
+					goto L_end;
+				}
+				close;
+			}
+		}
+	}
+	
+	c_hcolor: {
+		mes .npcname$;
+		mes "Sua cor de cabelo atual é a de número : ^FF0000"+@hcolor+"^000000.";
+		mes "O que acha?";
+		next;
+		switch (select ("- Próxima.:- Anterior.:- Escolher número.:- Gostei desta.")) {
+			case 1: { //Próxima
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						if (@hcolor >= .max_hcolor) {
+							mes .npcname$;
+							mes "Sua cor de cabelo já é a última que possuo em meu catálogo.";
+							next;
+							goto c_hcolor;
+						} else {
+							setlook 6,@hcolor+1;
+							set @hcolor, getlook (6);
+							specialeffect2 54,strcharinfo(0);
+							goto c_hcolor;
+						}
+					} else {
+						if (@hcolor >= .max_v_hcolor) {
+							mes .npcname$;
+							mes "Sua cor de cabelo já é a última que possuo em meu catálogo.";
+							next;
+							goto c_hcolor;
+						} else {
+							setlook 6,@hcolor+1;
+							set @hcolor, getlook (6);
+							specialeffect2 54,strcharinfo(0);
+							goto c_hcolor;
+						}
+					}
+				} else {
+					if (@hcolor >= .max_hcolor) {
+						mes .npcname$;
+						mes "Sua cor de cabelo já é a última que possuo em meu catálogo.";
+						next;
+						goto c_hcolor;
+					} else {
+						setlook 6,@hcolor+1;
+						set @hcolor, getlook (6);
+						specialeffect2 54,strcharinfo(0);
+						goto c_hcolor;
+					}
+				}
+			}
+			case 2: { //Anterior
+				if (@hcolor == .min_hcolor ) {
+					mes .npcname$;
+					mes "Sua cor de cabelo já é a primeira que possuo em meu catálogo.";
+					next;
+					goto c_hcolor;
+				} else {
+					setlook 6,@hcolor-1;
+					set @hcolor, getlook (6);
+					specialeffect2 54,strcharinfo(0);
+					goto c_hcolor;
+				}
+			}
+			case 3: { //Escolher Número
+				mes .npcname$;
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						mes "Escolha um número entre ^FF0000"+.min_hcolor+"^000000 e ^FF0000"+.max_hcolor+"^000000.";
+						next;
+						input @input,.min_hcolor,.max_hcolor;
+						setlook 6,@input;
+						set @hcolor, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_hcolor;
+					} else {
+						mes "Escolha um número entre ^FF0000"+.min_hcolor+"^000000 e ^FF0000"+.max_v_hcolor+"^000000.";
+						next;
+						input @input,.min_hcolor,.max_v_hcolor;
+						setlook 6,@input;
+						set @hcolor, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_hcolor;
+					}
+				} else {
+					mes "Escolha um número entre ^FF0000"+.min_hcolor+"^000000 e ^FF0000"+.max_hcolor+"^000000.";
+					next;
+					input @input,.min_hcolor,.max_hcolor;
+					setlook 6,@input;
+					set @hcolor, @input;
+					specialeffect2 54,strcharinfo(0);
+					goto c_hcolor;
+				}
+			}
+			case 4: { //Gostei desta
+				mes .npcname$;
+				mes "Que bom que gostou, deseja mais algo?";
+				next;
+				if (select ("- Sim.:- Não.") == 1) {
+					goto menu1;
+				} else {
+					goto L_end;
+				}
+				close;
+			}
+		}
+	}
+	
+	c_ccolor: {
+		mes .npcname$;
+		mes "Sua cor de roupa atual é a de número : ^FF0000"+@ccolor+"^000000.";
+		mes "O que acha?";
+		next;
+		switch (select ("- Próxima.:- Anterior.:- Escolher número.:- Gostei desta.")) {
+			case 1: { //Próxima
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						if (@ccolor >= .max_ccolor) {
+							mes .npcname$;
+							mes "Sua cor de roupa já é a última que possuo em meu catálogo.";
+							next;
+							goto c_ccolor;
+						} else {
+							setlook 7,@ccolor+1;
+							set @ccolor, getlook (7);
+							specialeffect2 54,strcharinfo(0);
+							goto c_ccolor;
+						}
+					} else {
+						if (@ccolor >= .max_v_ccolor) {
+							mes .npcname$;
+							mes "Sua cor de roupa já é a última que possuo em meu catálogo.";
+							next;
+							goto c_ccolor;
+						} else {
+							setlook 7,@ccolor+1;
+							set @ccolor, getlook (7);
+							specialeffect2 54,strcharinfo(0);
+							goto c_ccolor;
+						}
+					}
+				} else {
+					if (@ccolor >= .max_ccolor) {
+						mes .npcname$;
+						mes "Sua cor de roupa já é a última que possuo em meu catálogo.";
+						next;
+						goto c_ccolor;
+					} else {
+						setlook 7,@ccolor+1;
+						set @ccolor, getlook (7);
+						specialeffect2 54,strcharinfo(0);
+						goto c_ccolor;
+					}
+				}
+			}
+			case 2: { //Anterior
+				if (@ccolor == .min_ccolor ) {
+					mes .npcname$;
+					mes "Sua cor de roupa já é a primeira que possuo em meu catálogo.";
+					next;
+					goto c_ccolor;
+				} else {
+					setlook 7,@ccolor-1;
+					set @ccolor, getlook (7);
+					specialeffect2 54,strcharinfo(0);
+					goto c_ccolor;
+				}
+			}
+			case 3: { //Escolher Número
+				mes .npcname$;
+				if (.vip_needed > 0) {
+					if (getgmlevel () < .vip_needed) {
+						mes "Escolha um número entre ^FF0000"+.min_ccolor+"^000000 e ^FF0000"+.max_ccolor+"^000000.";
+						next;
+						input @input,.min_ccolor,.max_ccolor;
+						setlook 7,@input;
+						set @ccolor, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_ccolor;
+					} else {
+						mes "Escolha um número entre ^FF0000"+.min_ccolor+"^000000 e ^FF0000"+.max_v_ccolor+"^000000.";
+						next;
+						input @input,.min_hcolor,.max_v_ccolor;
+						setlook 7,@input;
+						set @ccolor, @input;
+						specialeffect2 54,strcharinfo(0);
+						goto c_ccolor;
+					}
+				} else {
+					mes "Escolha um número entre ^FF0000"+.min_ccolor+"^000000 e ^FF0000"+.max_ccolor+"^000000.";
+					next;
+					input @input,.min_ccolor,.max_ccolor;
+					setlook 7,@input;
+					set @ccolor, @input;
+					specialeffect2 54,strcharinfo(0);
+					goto c_ccolor;
+				}
+			}
+			case 4: { //Gostei desta
+				mes .npcname$;
+				mes "Que bom que gostou, deseja mais algo?";
+				next;
+				if (select ("- Sim.:- Não.") == 1) {
+					goto menu1;
+				} else {
+					goto L_end;
+				}
+				close;
+			}
+		}
+	}
+	
+	save_style: {
+		if (style1$ == "") { set style1$, "Vazio"; }
+		if (style2$ == "") { set style2$, "Vazio"; }
+		if (style3$ == "") { set style3$, "Vazio"; }
+		if (style4$ == "") { set style4$, "Vazio"; }
+		if (style5$ == "") { set style5$, "Vazio"; }
+	
+		mes .npcname$;
+		mes "Escolha em qual slot você deseja salvar seu estilo atual.";
+		next;
+		menu "- Estilo 1 [ ^FF6C00"+style1$+"^000000 ]",style1_save,"- Estilo 2 [ ^FF6C00"+style2$+"^000000 ]",style2_save,"- Estilo 3 [ ^FF6C00"+style3$+"^000000 ]",style3_save,"- Estilo 4 [ ^FF6C00"+style4$+"^000000 ]",style4_save,"- Estilo 5 [ ^FF6C00"+style5$+"^000000 ]",style5_save,"- Voltar.",menu1,"- Sair.",L_end;
+		
+		style1_save: {
+			if (style1$ == "Vazio") {
+				mes .npcname$;
+				mes "Digite um nome para o estilo.";
+				mes "^FF0000Atenção:^000000 O nome do estilo pode conter no máximo ^FF0000"+.max_sns+"^000000 caracteres.";
+				next;
+				if (input (@style_n$,1,.max_sns) == 1) {
+					mes .npcname$;
+					mes "^FF0000Falha ao salvar estilo.^000000";
+					mes "O nome que você digitou para o estilo possui mais que "+.max_sns+" caracteres, por favor digite um nome menor para que o estilo seja salvo corretamente.";
+					next;
+					menu "- Tentar novamente.",style1_save,"- Cancelar.",save_style,"- Sair.",L_end;
+				} else {
+					set style1$, @style_n$;
+					set style1_hstyle, getlook (1);
+					set style1_hcolor, getlook (6);
+					set style1_ccolor, getlook (7);
+					goto save_sucess;
+				} 
+			} else {
+				mes .npcname$;
+				mes "^FF0000Atenção:^000000 O estilo já foi salvo anteriormente se decidir continuar ele será deletado, o que deseja fazer?";
+				next;
+				menu "- Continuar.",style1_ovrwt,"- Cancelar.",save_style,"- Sair.",L_end;
+			}
+			style1_ovrwt: {
+				set style1$, "Vazio";
+				goto style1_save;
+			}
+		}
+		style2_save: {
+			if (style2$ == "Vazio") {
+				mes .npcname$;
+				mes "Digite um nome para o estilo.";
+				mes "^FF0000Atenção:^000000 O nome do estilo pode conter no máximo ^FF0000"+.max_sns+"^000000 caracteres.";
+				next;
+				if (input (@style_n$,1,.max_sns) == 1) {
+					mes .npcname$;
+					mes "^FF0000Falha ao salvar estilo.^000000";
+					mes "O nome que você digitou para o estilo possui mais que "+.max_sns+" caracteres, por favor digite um nome menor para que o estilo seja salvo corretamente.";
+					next;
+					menu "- Tentar novamente.",style2_save,"- Cancelar.",save_style,"- Sair.",L_end;
+				} else {
+					set style2$, @style_n$;
+					set style2_hstyle, getlook (1);
+					set style2_hcolor, getlook (6);
+					set style2_ccolor, getlook (7);
+					goto save_sucess;
+				} 
+			} else {
+				mes .npcname$;
+				mes "^FF0000Atenção:^000000 O estilo já foi salvo anteriormente se decidir continuar ele será deletado, o que deseja fazer?";
+				next;
+				menu "- Continuar.",style2_ovrwt,"- Cancelar.",save_style,"- Sair.",L_end;
+			}
+			style2_ovrwt: {
+				set style2$, "Vazio";
+				goto style2_save;
+			}
+		}
+		style3_save: {
+			if (style3$ == "Vazio") {
+				mes .npcname$;
+				mes "Digite um nome para o estilo.";
+				mes "^FF0000Atenção:^000000 O nome do estilo pode conter no máximo ^FF0000"+.max_sns+"^000000 caracteres.";
+				next;
+				if (input (@style_n$,1,.max_sns) == 1) {
+					mes .npcname$;
+					mes "^FF0000Falha ao salvar estilo.^000000";
+					mes "O nome que você digitou para o estilo possui mais que "+.max_sns+" caracteres, por favor digite um nome menor para que o estilo seja salvo corretamente.";
+					next;
+					menu "- Tentar novamente.",style3_save,"- Cancelar.",save_style,"- Sair.",L_end;
+				} else {
+					set style3$, @style_n$;
+					set style3_hstyle, getlook (1);
+					set style3_hcolor, getlook (6);
+					set style3_ccolor, getlook (7);
+					goto save_sucess;
+				} 
+			} else {
+				mes .npcname$;
+				mes "^FF0000Atenção:^000000 O estilo já foi salvo anteriormente se decidir continuar ele será deletado, o que deseja fazer?";
+				next;
+				menu "- Continuar.",style3_ovrwt,"- Cancelar.",save_style,"- Sair.",L_end;
+			}
+			style3_ovrwt: {
+				set style3$, "Vazio";
+				goto style3_save;
+			}
+		}
+		style4_save: {
+			if (style4$ == "Vazio") {
+				mes .npcname$;
+				mes "Digite um nome para o estilo.";
+				mes "^FF0000Atenção:^000000 O nome do estilo pode conter no máximo ^FF0000"+.max_sns+"^000000 caracteres.";
+				next;
+				if (input (@style_n$,1,.max_sns) == 1) {
+					mes .npcname$;
+					mes "^FF0000Falha ao salvar estilo.^000000";
+					mes "O nome que você digitou para o estilo possui mais que "+.max_sns+" caracteres, por favor digite um nome menor para que o estilo seja salvo corretamente.";
+					next;
+					menu "- Tentar novamente.",style4_save,"- Cancelar.",save_style,"- Sair.",L_end;
+				} else {
+					set style4$, @style_n$;
+					set style4_hstyle, getlook (1);
+					set style4_hcolor, getlook (6);
+					set style4_ccolor, getlook (7);
+					goto save_sucess;
+				} 
+			} else {
+				mes .npcname$;
+				mes "^FF0000Atenção:^000000 O estilo já foi salvo anteriormente se decidir continuar ele será deletado, o que deseja fazer?";
+				next;
+				menu "- Continuar.",style4_ovrwt,"- Cancelar.",save_style,"- Sair.",L_end;
+			}
+			style4_ovrwt: {
+				set style4$, "Vazio";
+				goto style4_save;
+			}
+		}
+		style5_save: {
+			if (style5$ == "Vazio") {
+				mes .npcname$;
+				mes "Digite um nome para o estilo.";
+				mes "^FF0000Atenção:^000000 O nome do estilo pode conter no máximo ^FF0000"+.max_sns+"^000000 caracteres.";
+				next;
+				if (input (@style_n$,1,.max_sns) == 1) {
+					mes .npcname$;
+					mes "^FF0000Falha ao salvar estilo.^000000";
+					mes "O nome que você digitou para o estilo possui mais que "+.max_sns+" caracteres, por favor digite um nome menor para que o estilo seja salvo corretamente.";
+					next;
+					menu "- Tentar novamente.",style5_save,"- Cancelar.",save_style,"- Sair.",L_end;
+				} else {
+					set style5$, @style_n$;
+					set style5_hstyle, getlook (1);
+					set style5_hcolor, getlook (6);
+					set style5_ccolor, getlook (7);
+					goto save_sucess;
+				} 
+			} else {
+				mes .npcname$;
+				mes "^FF0000Atenção:^000000 O estilo já foi salvo anteriormente se decidir continuar ele será deletado, o que deseja fazer?";
+				next;
+				menu "- Continuar.",style5_ovrwt,"- Cancelar.",save_style,"- Sair.",L_end;
+			}
+			style5_ovrwt: {
+				set style5$, "Vazio";
+				goto style5_save;
+			}
+		}
+		save_sucess: {
+			mes .npcname$;
+			mes "^0000FFEstilo salvo com sucesso.^000000";
+			mes "O seu estilo foi salvo corretamente, e você poderá utilizá-lo quando quiser.";
+			mes "Deseja mais alguma coisa?";
+			next;
+			menu "- Alterar aparência.",menu1,"- Sair.",L_end;
+		}
+	}
+	
+	load_style: {
+		if (style1$ == "") { set style1$, "Vazio"; }
+		if (style2$ == "") { set style2$, "Vazio"; }
+		if (style3$ == "") { set style3$, "Vazio"; }
+		if (style4$ == "") { set style4$, "Vazio"; }
+		if (style5$ == "") { set style5$, "Vazio"; }
+		
+		mes .npcname$;
+		mes "Escolha qual estilo deseja carregar.";
+		next;
+		menu "- Estilo 1 [ ^FF6C00"+style1$+"^000000 ]",style1_load,"- Estilo 2 [ ^FF6C00"+style2$+"^000000 ]",style2_load,"- Estilo 3 [ ^FF6C00"+style3$+"^000000 ]",style3_load,"- Estilo 4 [ ^FF6C00"+style4$+"^000000 ]",style4_load,"- Estilo 5 [ ^FF6C00"+style5$+"^000000 ]",style5_load,"- Voltar.",menu1,"- Sair.",L_end;
+		
+		style1_load: {
+			if (style1$ == "Vazio") {
+				mes .npcname$;
+				mes "O estilo que você selecionou está vazio e não pode ser carregado.";
+				next;
+				goto load_style;
+			} else {
+				setlook 1, style1_hstyle;
+				setlook 6, style1_hcolor;
+				setlook 7, style1_ccolor;
+				specialeffect2 54,strcharinfo(0);
+				goto load_sucess;
+			}
+		}		
+		style2_load: {
+			if (style2$ == "Vazio") {
+				mes .npcname$;
+				mes "O estilo que você selecionou está vazio e não pode ser carregado.";
+				next;
+				goto load_style;
+			} else {
+				setlook 1, style2_hstyle;
+				setlook 6, style2_hcolor;
+				setlook 7, style2_ccolor;
+				specialeffect2 54,strcharinfo(0);
+				goto load_sucess;
+			}
+		}		
+		style3_load: {
+			if (style3$ == "Vazio") {
+				mes .npcname$;
+				mes "O estilo que você selecionou está vazio e não pode ser carregado.";
+				next;
+				goto load_style;
+			} else {
+				setlook 1, style3_hstyle;
+				setlook 6, style3_hcolor;
+				setlook 7, style3_ccolor;
+				specialeffect2 54,strcharinfo(0);
+				goto load_sucess;
+			}
+		}
+		style4_load: {
+			if (style4$ == "Vazio") {
+				mes .npcname$;
+				mes "O estilo que você selecionou está vazio e não pode ser carregado.";
+				next;
+				goto load_style;
+			} else {
+				setlook 1, style4_hstyle;
+				setlook 6, style4_hcolor;
+				setlook 7, style4_ccolor;
+				specialeffect2 54,strcharinfo(0);
+				goto load_sucess;
+			}
+		}
+		style5_load: {
+			if (style5$ == "Vazio") {
+				mes .npcname$;
+				mes "O estilo que você selecionou está vazio e não pode ser carregado.";
+				next;
+				goto load_style;
+			} else {
+				setlook 1, style5_hstyle;
+				setlook 6, style5_hcolor;
+				setlook 7, style5_ccolor;
+				specialeffect2 54,strcharinfo(0);
+				goto load_sucess;
+			}
+		}
+		
+		load_sucess: {
+			mes .npcname$;
+			mes "Estilo carregado com sucesso, deseja mais algo?";
+			next;
+			menu "- Alterar aparência.",menu1,"- Carregar outro estilo.",load_style,"- Sair.",L_end;
+		}
+	}
+	
+	L_end: {
+		mes .npcname$;
+		mes "Tudo bem, volte quando precisar dos meus serviços.";
+		close;
+	}
+}
+case 6:
+{
+set .@npcencantador$,"^0000FF[Encantador]^000000";
+set @PrecoEncantar,150000; // Preço para encantar a arma
+
+mes .@npcencantador$;
+mes "Olá ^0000CD"+strcharinfo(0)+"^000000, bem vind"+(Sex?"o":"a")," ao ^FF0000[Encantador]^000000, eu posso Encantar a sua Arma com qualquer elemento por 5 minutos!";
+mes "Para encantar sua arma cobrarei "+@PrecoEncantar+"z.";
+next;
+if(select("Sim.:Não.")==2){
+mes .@npcencantador$;
+mes "Volte quando precisar.";
+close;
+}
+if(Zeny < @PrecoEncantar){
+mes .@npcencantador$;
+mes "Você não tem o dinheiro suficiente.";
+close;
+}
+mes .@npcencantador$;
+mes "Qual elemento você quer?";
+set Zeny,Zeny-@PrecoEncantar;
+next;
+switch(select("Geada.:Chama.:Terremoto.:Ventania.:Sagrado.:Maldito.:Sair.")){
+case 1:
+sc_start SC_PROPERTYWATER,2000000,5; // 400000 = 1 Minuto: Encantar com Geada, Duração: 5 Minutos, Level 5
+close;
+case 2:
+sc_start SC_PROPERTYFIRE,2000000,5; // 400000 = 1 Minuto: Encantar com Chama, Duração: 5 Minutos, Level 5
+close;
+case 3:
+sc_start SC_PROPERTYGROUND,2000000,5; // 400000 = 1 Minuto: Encantar com Terremoto, Duração: 5 Minutos, Level 5
+close;
+case 4:
+sc_start SC_PROPERTYWIND,2000000,5; // 400000 = 1 Minuto: Encantar com Ventania, Duração: 5 Minutos, Level 5
+close;
+case 5:
+sc_start SC_ASPERSIO,2000000,5; // 400000 = 1 Minuto: Encantar com Sagrado, Duração: 5 Minutos, Level 5
+close;
+case 6:
+sc_start SC_PROPERTYDARK,2000000,5; // 400000 = 1 Minuto: Encantar com Maldito, Duração: 5 Minutos, Level 5
+close;
+case 7:
+set Zeny,Zeny+@PrecoEncantar;
+close;
+}
+}
+case 7:
+		close;
+	}
+}
+
+function	script	F_REMOVERCARTAS	{
+	mes "[Removedor de Cartas]";
+	mes "Olá...";
+	mes "Bem vindo ao novo sistema de recomorção de cartas.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Nosso sistema foi aprimorado e agora dispomos de mais opções para você.";
+	mes "O que deseja fazer?";
+	next;
+	menu "Mais informações",info,"Remover cartas",removercartas,"Nada...",fim;
+ 
+info:
+	mes "[Removedor de Cartas]";
+	mes "Nosso novo sistema agora possui várias opções para você.";
+	mes "Vejamos as novidades...";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Agora você pode pagar tanto com CASH como com ZENY.";
+	mes "-A chance do equipamento e cartas serem destruídos diminuiu.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Se você for VIP a chance de perder cartas é zero.";
+	mes "-Retiramos qualquer carta de todos os tipos de equipamentos.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "-Cartas de MVP não necessitam de itens especiais para serem removidas, apenas custam o dobro do preço.";
+	mes "-Sem risco de perda de refinamento.";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Aqui estão os preços:";
+	mes "-Em Zeny -> 100.000z";
+	mes "-Em Cash -> 2c (ROPs)";
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Estamos trabalhando em mais melhorias.";
+	mes "Enquanto isso aproveite nosso NOVO sistema de remorção de cartas.";
+	close2;
+	end;
+ 
+removercartas:
+	set .@preco_c,2; //preço em CASH
+	set .@preco_z,100000; //preço em Zeny
+	set .@pcnt_de,30; //porcentagem do equipamento ser destruído
+	set .@pcnt_dc,30; //porcentagem da carta ser destruída
+	set @usar_cash,0; //checagem se o jogador vai usar cash como pagamento
+	set @mult_preco,1; //valor a ser multiplicado ao valor total do serviço. Caso a carta seja de um MVP o preço será duplicado
+	setarray @menu$,""; //menu que guardará os itens que estão equipados no jogador
+	setarray @equip_ident$[0],"Capacete","Armadura","Arma Esquerda","Arma Direita/Escudo","Manto","Botas","Acessório Esquerdo","Acessório Direito","Mascara/Óculos","Mascara/Asas/Aura";
+	setarray .@equip_slot[0], EQI_HEAD_TOP,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_HEAD_MID,EQI_HEAD_LOW;
+	
+	for(set .@i,0; .@i<getarraysize(.@equip_slot); set .@i,.@i+1) {
+	if(getequipisequiped(.@equip_slot[.@i])){
+	set @menu$,@menu$+getequipname(.@equip_slot[.@i])+":";
+	}else{
+	set @menu$,@menu$+"^999999"+@equip_ident$[.@i]+" (Vazio)^000000:";
+	}
+	}
+	
+	if(@menu$ == ""){
+	mes "[Removedor de Cartas]";
+	mes "Desculpe, mas você não tem nada equipado no momento.";
+	close;
+	}
+	mes "[Removedor de Cartas]";
+	mes "De qual equipamento você deseja retirar a(s) carta(s)?";
+	next;
+	set .@i,select("Nenhum:"+@menu$);
+	switch(.@i){
+	case 1:
+	mes "[Removedor de Cartas]";
+	mes "É sempre um prazer serví-lo.";
+	mes "Não esqueça de olhar as novidade de nosso NOVO sistema de recomorção de cartas.";
+	close;
+	break;
+	default:
+	set @equip_num,.@equip_slot[.@i-2];
+	if(!getequipisequiped(@equip_num)){
+	mes "[Removedor de Cartas]";
+	mes "Não há nada aqui. Talvez você tenha retirado o equipamento.";
+	close;
+	}
+	break;
+	}
+	
+	setarray .@equip_card,getequipcardid(@equip_num,0),getequipcardid(@equip_num,1),getequipcardid(@equip_num,2),getequipcardid(@equip_num,3);
+	for(set .@i,0; .@i<4; set .@i,.@i+1) {
+	if (.@equip_card[.@i] >= 4700) // Armor Enchant System
+	set .@equip_card[.@i],0;
+	}
+	
+	if (.@equip_card[0] <= 0 && .@equip_card[1] <= 0 && .@equip_card[2] <= 0 && .@equip_card[3] <= 0){
+	mes "[Removedor de Cartas]";
+	mes "O equipamento que você escolheu não contem nenhuma carta.";
+	mes "Escolha um que tenha carta(s) e poderei trabalhar.";
+	close;
+	}
+	
+	set .@mvp_list$,
+	"|4408|4128|4456|4168|4142"+  //Gloom_Under_Night_Card, Golden_Bug_Card, Nidhogg_Shadow_Card, Dark_Lord_Card, Doppelganger_Card
+	"|4134|4137|4386|4407|4357"+  //Dracula_Card, Drake_Card, Detale_Card, Randgris_Card, B_Seyren_Card
+	"|4146|4132|4147|4372|4145"+  //Maya_Card, Mistress_Card, Baphomet_Card, Bacsojin_Card, Berzebub_Card
+	"|4374|4352|4367|4236|4425"+  //Apocalips_H_Card, B_Ygnizem_Card, B_Shecil_Card, Amon_Ra_Card, Atroce_Card
+	"|4359|4123|4144|4135|4143"+  //B_Eremes_Card, Eddga_Card, Osiris_Card, Orc_Load_Card, Orc_Hero_Card
+	"|4263|4131|4430|4276|4419"+  //Incant_Samurai_Card, Moonlight_Flower_Card, Ifrit_Card, Lord_Of_Death_Card, Ktullanux_Card
+	"|4403|4399|4376|4441|4302"+  //Kiel_Card, Thanatos_Card, Lady_Tanee_Card, Fallen_Bishop_Card, Tao_Gunka_Card
+	"|4305|4148|4318|4121|4365"+  //Turtle_General_Card, Pharaoh_Card, Knight_Windstorm_Card, Phreeoni_Card, B_Katrinn_Card
+	"|4363|4324|4361|4330|4342|"; //B_Magaleta_Card, Garm_Card, B_Harword_Card, Dark_Snake_Lord_Card, Rsx_0806_Card
+	if ((.@equip_card[0] && compare(.@mvp_list$,"|"+.@equip_card[0]+"|")) ||
+	(.@equip_card[1] && compare(.@mvp_list$,"|"+.@equip_card[1]+"|")) ||
+	(.@equip_card[2] && compare(.@mvp_list$,"|"+.@equip_card[2]+"|")) ||
+	(.@equip_card[3] && compare(.@mvp_list$,"|"+.@equip_card[3]+"|")))
+	set @mult_preco,2;
+	
+	mes "[Removedor de Cartas]";
+	mes "Que forma de pagamento você deseja usar?";
+	next;
+	if(select("Zeny (100.000z):Cash (2c [ROPs])") == 2){
+	set @usar_cash,1;
+	}
+	
+	if(@usar_cash){
+	if(#CASHPOINTS < .@preco_c * @mult_preco){
+	mes "[Removedor de Cartas]";
+	mes "Você não tem Cash sulficiente para esse serviço.";
+	close;
+	}
+	set #CASHPOINTS,#CASHPOINTS - (.@preco_c * @mult_preco);
+	}else{
+	if(Zeny < .@preco_c * @mult_preco){
+	mes "[Removedor de Cartas]";
+	mes "Você não tem Zeny sulficiente para esse serviço.";
+	close;
+	}
+	set Zeny,Zeny - (.@preco_c * @mult_preco);
+	}
+	
+	set .@equip_id, getequipid(@equip_num);
+	set .@equip_refine, getequiprefinerycnt(@equip_num);
+	set .@broken_equi,1;
+	set .@card_break,0;
+	delequip @equip_num;
+	
+	if(rand(0,100) > .@pcnt_de){
+	set .@broken_equi,0;
+	getitem2 .@equip_id,1,1,.@equip_refine,0,0,0,0,0;
+	}
+	
+	for(set .@i,0; .@i<4; set .@i, .@i+1){
+	if (.@equip_card[.@i]) {
+	if(rand(0,100) > .@pcnt_dc || getarg(0))
+	getitem .@equip_card[.@i],1;
+	else
+	set .@card_break,1;
+	
+	}
+	}
+	
+	if (!.@broken_equi && .@card_break)
+	specialeffect2 EF_LORD;
+	else if (.@broken_equi && .@card_break)
+	specialeffect2 EF_SUI_EXPLOSION;
+	else if (!.@broken_equi && !.@card_break)
+	specialeffect2 EF_FIREPILLAR;
+	else
+	specialeffect2 EF_MAXPOWER;
+	
+	mes "[Removedor de Cartas]";
+	mes "-- Resultado da Separação de Carta --";
+	if (!.@broken_equi) {
+	mes "Rachadura não ocorreu durante o processo de separação de carta.";
+	mes "^0000FFSeparação de equipamento foi normal.^000000";
+	} else {
+	mes "Rachadura ocorreu durante o processo de separação carta.";
+	mes "Equipamento foi danificado. ^ff0000Irrecuperável.^000000";
+	}
+	mes "-------------------";
+	if (!.@card_break) {
+	mes "Erosão da superfície não ocorreu durante o processo de separação da carta.";
+	mes "^0000ffSeparação de carta bem-sucedida.^000000";
+	} else {
+	mes "Erosão da superfície ocorreu durante o processo de separação cartão.";
+	mes "A carta foi danificada. ^ff0000Irrecuperável.^000000";
+	}
+	next;
+	mes "[Removedor de Cartas]";
+	mes "Isso é tudo...";
+	mes "Volte sempre!";
+	close2;
+	end;
+ 
+fim:
+	mes "[Removedor de Cartas]";
+	mes "É sempre um prazer serví-lo.";
+	mes "Não esqueça de olhar as novidade de nosso NOVO sistema de recomorção de cartas.";
+	close2;
+	end;
+}

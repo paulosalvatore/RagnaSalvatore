@@ -1,0 +1,67 @@
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%           _____    _____   _____   _____   _____    _   _____   _   _            %%
+//%%          |  _  \  /  _  \ |  _  \ | ____| |  _  \  | | /  ___| | | / /           %%
+//%%          | |_| |  | | | | | | | | | |__   | |_| |  | | | |     | |/ /            %%
+//%%          |  _  /  | | | | | | | | |  __|  |  _  /  | | | |     | |\ \            %%
+//%%          | | \ \  | |_| | | |_| | | |___  | | \ \  | | | |___  | | \ \           %%
+//%%          |_|  \_\ \_____/ |_____/ |_____| |_|  \_\ |_| \_____| |_|  \_\          %%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%==================================================================================%%
+//%% | Desenvolvido Por [ADM] Roderick | Cronus | Por Favor, Não Retire Os Créditos | %%
+//%%==================================================================================%%
+//%% INSERIR A TABELA ABAIXO NO BANCO DE DADOS SQL:    				      %%
+//%%                                                                                  %%
+//DROP TABLE IF EXISTS `redlist`;
+//CREATE TABLE `redlist` (
+//`id` int(11) unsigned NOT NULL auto_increment,
+//`account` int(11) unsigned NOT NULL default '0',
+//`ip` varchar(100) NOT NULL default '',
+//PRIMARY KEY (`id`)
+//)ENGINE=MyISAM;
+//%%										      %%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-	script	packiniciante	-1,{
+
+	OnPCLoginEvent:
+
+setarray @itens[0],12356; //Aqui você adiciona o ID dos itens 
+setarray @qtd[0],1;	//Aqui você colocará a quantidade de cada um
+
+
+
+query_sql ("select last_ip from login where account_id='"+getcharid(3)+"'",@ip$);
+query_sql ("select ip from redlist where ip='"+@ip$+"'",@exist$);
+if (@exist$!=@ip$){
+query_sql("insert into `redlist` (account,ip) values ('"+getcharid(3)+"', '"+@ip$+"')");
+}
+else {
+set #jarecebeu,1;
+end;
+}
+if (#jarecebeu == 1) goto Negado;
+	
+	
+mes "^00FF00 Bem Vindo^000000 ao ^FF0000RagnaPalay ^000000";
+mes "";
+mes "Vejo que você é novo por aqui, então vou te dar o Pack Iniciante!!";
+mes "Você receberá no Pack, os seguintes itens:";
+next;
+for (set .@i,0; .@i<getarraysize(@itens); set .@i,.@i+1){
+	set .@nome$, .@nome$+getitemname(@itens[.@i]);
+		mes "[^FF0000"+@qtd[.@i]+"^000000] ^0000FF"+.@nome$+"^000000";
+	set .@nome$,"";
+}
+next;
+for (set .@i,0; .@i<getarraysize(@itens); set .@i,.@i+1){
+	getitem @itens[.@i],@qtd[.@i];
+}
+set #jarecebeu,1;
+next;
+mes "Prontinho, faça bom uso!! ^^";
+close;
+end;
+
+Negado:
+end;
+
+}

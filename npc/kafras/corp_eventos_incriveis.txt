@@ -1,0 +1,111 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: corp_eventos_incriveis.txt             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.5/1.2                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Corp. Eventos Incríveis (Salvar, Armazém &  |
+//   | Serviço de Carrinho) na região de Arunafeltz.          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Revisão [Holy]                                     |
+//   |--------------------------------------------------------|
+//   | - Main Function                                        |
+//   | arg(0): Used to determine which menu to display.       |
+//   | arg(1): Used to determine the location displayed in    |
+//   | the save message.                                      |
+//   \________________________________________________________/
+
+function	script	F_ZondaStaff	{
+	cutin "zonda_01",2;
+	mes "[Corp. Eventos Incríveis]";
+	mes "Bem-vindo a Corporação Eventos Incríveis.";
+	mes "Nossa equipe está sempre trabalhando";
+	mes "para superar suas expectativas";
+	mes "a respeito da qualidade de serviço. Então";
+	mes "como posso ajudá-lo hoje?";
+	next;
+	switch (getarg(0)) {
+		// Save, Storage, Pushcart, Storage Password (Hugel)
+		case 0: setarray @Z_Menu0$, "Salvar Ponto de Retorno", "Usar Armazém", "Alugar Carrinho", "Serviço de Armazém com senha", "Cancelar."; break;
+		// Save, Storage, Pushcart, Storage Password (Veins, Rachel)
+		default:
+		case 1: setarray @Z_Menu0$, "Salvar Ponto de Retorno", "Usar Armazém", "Serviço de Teleporte", "Alugar Carrinho", "Serviço de Armazém com senha", "Cancelar."; break;
+	}
+	.@menu$ = "";
+	for (.@i = 0; .@i < getarraysize(@Z_Menu0$); ++.@i)
+		.@menu$ += @Z_Menu0$[.@i] + ":";
+	.@j = select (.@menu$) - 1;
+	if (@Z_Menu0$[.@j] == "Salvar Ponto de Retorno") {
+		mes "[Corp. Eventos Incríveis]";
+		mes "Seu ponto de retorno foi salvo ";
+		mes getarg(1);
+		mes "Obrigado por usar o serviço da Corp. Eventos Incríveis";
+		return;
+	} else if (@Z_Menu0$[.@j] == "Usar Armazém") {
+		callfunc "F_KafStor",0,40,6,"[Corp. Eventos Incríveis]";
+		close2;
+		cutin "", 255;
+		end;
+	} else if (@Z_Menu0$[.@j] == "Serviço de Teleporte") {
+		callfunc "F_KafTele", 6, "[Corp. Eventos Incríveis]";
+		close2;
+		cutin "", 255;
+		end;
+	} else if (@Z_Menu0$[.@j] == "Alugar Carrinho") {
+		callfunc "F_KafCart", 6, 800, "[Corp. Eventos Incríveis]";
+		close2;
+		cutin "", 255;
+		end;
+	} else if (@Z_Menu0$[.@j] == "Serviço de Armazém com senha") {
+		callfunc("F_SetKafCode","[Corp. Eventos Incríveis]","Cool Event Corp.");
+		//the function closes msg and removes cutins
+	} else {
+		mes "[Corp. Eventos Incríveis]";
+		mes "A Corp. Eventos Incríveis, está sempre se esforçando para providenciar o melhor";
+		mes "serviço para nossos clientes.";
+		mes "Ajude-nos a nos tornar os melhores, usando nossos serviços com frequência. Obrigado!";
+		close2;
+	}
+	cutin "", 255;
+	end;
+}
+
+hugel,88,168,4	script	Corp. Eventos Incríveis::CoolEventCorpStaffHugel	4_M_ZONDAMAN,{
+	callfunc "F_KafSet";
+	callfunc "F_ZondaStaff", 0, "aqui no vilarejo de Hugel.";
+	savepoint "hugel",96,155;
+	close2;
+	cutin "", 255;
+	end;
+}
+
+rachel,109,138,5	script	Corp. Eventos Incríveis::CoolEventCorpStaffRachel	4_M_ZONDAMAN,{
+	callfunc "F_KafSet";
+	callfunc "F_ZondaStaff", 1, "aqui na cidade de  Rachel.";
+	savepoint "rachel",113,137;
+	close2;
+	cutin "", 255;
+	end;
+}
+
+veins,208,128,5	script	Corp. Eventos Incríveis::CoolEventCorpStaffVeins	4_M_ZONDAMAN,{
+	callfunc "F_KafSet";
+	callfunc "F_ZondaStaff", 1, "aqui na cidade de Veins.";
+	savepoint "veins",204,103;
+	close2;
+	cutin "", 255;
+	end;
+}

@@ -1,0 +1,51 @@
+prontera,166,193,4	script	Upador dos Homunculus	866,{
+set @np$,"[Senhor dos Homonoclus]";// nome do npc que vai aparecer no chat
+set @precoe,100;// Preço de cada embriao defina 0 para nao cobrar
+set @precou,100;//Preco pra upa defina 0 para nao cobrar
+set @precot,100;//Preço pra evolui defina 0 para nao cobrar
+mes @np$;
+mes ""+strcharinfo(0)+" oque deseja fazer?";
+switch(select("Evoluir Homonoclus","Pegar Embrião","Upar Homonoclus"))
+
+{
+
+case 1:
+next;
+if(Class == 4071 && Class == 18) { mes @np$; mes "Você não pode ter um homunculus."; close; }
+if (Zeny < @precoe) { mes @np$; mes "Você não tem a quatia de zeny necessária."; close; }
+mes @np$;
+mes "Saiba que custa "+@precot+"z";
+mes "para evoluir seu Homonoclus.";
+mes "Deseja continuar mesmo assim?";
+if(select("Sim:Não") == 2) close;
+set Zeny,Zeny-@precot;
+atcommand "@homevolution";
+close;
+
+case 2:
+next;
+if(Class == 4071 && Class == 18) { mes @np$; mes "Você não pode ter um homunculus."; close; }
+if (Zeny < @precoe) { mes @np$; mes "Você não tem a quantia de zenys necessária."; close; }
+mes @np$;
+mes "Saiba que custa "+precoe+"z";
+mes "para adquirir um Embrião";
+if(select("Sim:Não") == 2) close;
+set Zeny,Zeny-@precoe;
+getitem 7142,1;
+close;
+
+
+case 3:
+next;
+if(Class == 4071 && Class == 18) { mes @np$; mes "Você não pode ter um homunculus."; close; }
+if (Zeny < @precou) { mes @np$; mes "Você não tem a quantia de zenys necessária."; close; }
+mes @np$;
+mes "Saiba que custa "+precou+"z";
+mes "para upar seu Homonoclus.";
+mes "Deseja continuar mesmo assim?";
+if(select("Sim:Não") == 2) close;
+set Zeny,Zeny-@precou;
+atcommand "@homlvl 99";
+close;
+}
+}

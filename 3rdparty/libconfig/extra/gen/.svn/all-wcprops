@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/extra/gen
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/gen/Makefile.in
+END
+scanner.l
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/extra/gen/scanner.l
+END
+clangwarnings.patch
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/brAthena/brAthena/!svn/ver/222/trunk/3rdparty/libconfig/extra/gen/clangwarnings.patch
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/gen/Makefile
+END
+grammar.y
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/extra/gen/grammar.y
+END

@@ -1,0 +1,119 @@
+//prontera,144,175,4	script	Presença	721,{
+prontera,144,175,4	script	Presença	4_F_KAFRA7,{
+
+	set .@n$, "[ ^cc0000Presença^000000 ]";
+	set @TempoHora, 3600;
+
+	mes .@n$;
+	mes "Olá, "+strcharinfo(0)+" !";
+	mes "O que você gostaria de fazer ?";
+	next;
+	
+	switch(select("- Me explique:- Marcar Presença:- Ver Meus Pontos:- Trocar Meus Pontos:- Sair"))
+	{
+
+		if(BaseLevel < 80)
+		{
+			mes "Desculpe, mas você precisa ser mais velho para participar.";
+			mes "Me procure quando for level 80 ou mais.";
+			close;
+		}
+
+		case 1:
+				mes "É bem simples, quando você marcar presença aqui comigo, eu irei contar 1(uma) hora, se você permanecer 1(uma) hora logado em nosso servidor, você irá ganhar 3(três) pontos, para ganhar os pontos, basta vir falar comigo novamente, juntando 50 pontos, eu troco por um item";
+				next;
+				mes "Lembrando: Não será contado pontos para lojas com comando @at, loja aberta normalmente ou pessoas AFK";
+				close;
+		
+		case 2:
+				if(#presenca != 1){
+				set #TimeOn, gettimetick(2) + @TempoHora;
+				set #presenca,1;
+				mes .@n$;
+				mes "Seu tempo foi marcado !";
+				close;
+				}
+				if(#TimeOn >= gettimetick(2)){
+				mes .@n$;
+				mes "Você ainda não pode pegar os seus Pontos.";
+				mes "Espere ^FF0000"+((#TimeOn-gettimetick(2))/60)+"^000000 minutos.";
+				close;
+				}
+				mes .@n$;
+				mes "Receba agora os seus 3 pontos.";
+				set #pontos,#pontos+3;
+				set #presenca,0;
+				next;
+				mes .@n$;
+				mes "Pontos Entreges.";
+				close;
+			
+		case 3:
+				mes .@n$;
+				mes "Você tem: ^FF0000"+#pontos+"^000000 Pontos de Presença!";
+				close;
+			
+		case 4:
+				mes .@n$;
+				mes "Você tem: ^FF0000"+#pontos+"^000000 Pontos de Presença!";
+				
+				setarray .itm[0],7549,606,607,608; // Id dos itens no exemplo ao lado
+				setarray .prc[0],3,10,50,40; // Preco dos itens no exemplo ao lado
+				setarray .qtd[0],1,10,20,30; // Quantidade de itens no exemplo ao lado
+				for(set .@cntsv1,0; .@cntsv1 < getarraysize(.itm); set .@cntsv1,.@cntsv1+1)
+				{
+					if(.@cntsv1 == 0)
+					set .smenu$,getitemname(.itm[.@cntsv1]);
+					else
+					set .smenu$,.smenu$+":"+getitemname(.itm[.@cntsv1]);
+				}
+					set @choice, select(.smenu$);
+					set @choice,@choice-1;
+					if(#pontos < .prc[@choice])
+					{
+						next;
+						mes "Você não tem pontos suficientes para trocar";
+						close();
+					} else {
+						getitem .itm[@choice],.qtd[@choice];
+						set #pontos,#pontos-.prc[@choice];
+						next;
+						mes "Foi um prazer fazer negócios com você";
+						close();
+					}
+		case 5:
+				mes .@n$;
+				mes "Volte quando quiser marcar seu tempo !";
+				close;
+	}
+
+	end();
+	
+OnWhisperGlobal:
+	if(#presenca == 0)
+	{
+		dispbottom "Você ainda não marcou presença !";
+		end;
+	}
+		dispbottom "Faltam apenas "+((#TimeOn-gettimetick(2))/60)+" minutos.";
+		end;
+
+OnPCLogoutEvent:
+	if(#presenca == 1)
+	{
+		if(checkvending(strcharinfo(0)))
+		{
+			set #presenca,0;
+			end;
+		}
+			set #TimeOff,#TimeOn - gettimetick(2);
+			end;
+	}
+
+OnPCLoginEvent:
+	if(#presenca == 1)
+	{
+		set #TimeOn, gettimetick(2) + #TimeOff;
+		end;
+	}
+}

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/brAthena/brAthena/!svn/ver/329/trunk/vcproj-10
+END
+conversor.vcxproj.filters
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/brAthena/brAthena/!svn/ver/225/trunk/vcproj-10/conversor.vcxproj.filters
+END
+char-server.vcxproj.filters
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/brAthena/brAthena/!svn/ver/222/trunk/vcproj-10/char-server.vcxproj.filters
+END
+map-server.vcxproj.filters
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/brAthena/brAthena/!svn/ver/222/trunk/vcproj-10/map-server.vcxproj.filters
+END
+mapcache.vcxproj.filters
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/brAthena/brAthena/!svn/ver/247/trunk/vcproj-10/mapcache.vcxproj.filters
+END
+login-server.vcxproj
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/329/trunk/vcproj-10/login-server.vcxproj
+END
+conversor.vcxproj
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/brAthena/brAthena/!svn/ver/225/trunk/vcproj-10/conversor.vcxproj
+END
+char-server.vcxproj
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/brAthena/brAthena/!svn/ver/222/trunk/vcproj-10/char-server.vcxproj
+END
+map-server.vcxproj
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/258/trunk/vcproj-10/map-server.vcxproj
+END
+mapcache.vcxproj
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/brAthena/brAthena/!svn/ver/247/trunk/vcproj-10/mapcache.vcxproj
+END
+login-server.vcxproj.filters
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/brAthena/brAthena/!svn/ver/222/trunk/vcproj-10/login-server.vcxproj.filters
+END

@@ -1,0 +1,4 @@
+-	script	brAthenaMOTD	-1,{
+	message strcharinfo(0),"Bem-vindo ao brAthena! Favor reportar problemas do emulador na central de desenvolvimento!";
+	end;
+}

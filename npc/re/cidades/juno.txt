@@ -1,0 +1,31 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: juno.txt                               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/Herc/brA Dev. Team                   |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/Herc/brA: 1.0/1.0/1.0/1.0                |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs da Cidade de Juno (RE)                 |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+yuno,150,283,4	duplicate(JunoSoldier1)	Juno Soldier#juno	4_M_EIN_SOLDIER
+yuno,165,283,4	duplicate(JunoSoldier2)	Juno Soldier#2juno	4_M_EIN_SOLDIER
+yuno,227,292,4	duplicate(JunoSoldier3)	Juno Soldier#3juno	4_M_EIN_SOLDIER
+yuno,165,228,4	duplicate(JunoSoldier4)	Juno Soldier#4juno	4_M_EIN_SOLDIER
+yuno,150,228,4	duplicate(JunoSoldier5)	Juno Soldier#5juno	4_M_EIN_SOLDIER
+yuno,334,182,4	duplicate(JunoSoldier6)	Juno Soldier#6juno	4_M_EIN_SOLDIER
+yuno,263,320,4	duplicate(JunoSoldier7)	Juno Soldier#7juno	4_M_EIN_SOLDIER

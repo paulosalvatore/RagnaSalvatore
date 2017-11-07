@@ -1,0 +1,43 @@
+//==============================================================
+//                       * *
+//                     *¨¨¨¨¨*
+//                     *¨¨¨¨¨¨¨*
+//             ____    _____     ____    _____                
+//            / __ \¨¨|  _  \¨¨ / __ \¨¨/ ____|
+//           | /  \ | | (_)  | | /  \_| | |___
+//           | |  | | | __  /  | |   _  | ____|
+//           | \__/ | | | \ \  | \__/ | | |___
+//            \____/  |_|  \_\  \____/  \_____|
+//
+//               _   _   _   _   _   _   _
+//              / \ / \ / \ / \ / \ / \ / \
+//             ( S | C | R | I | P | T | S )
+//              \_/ \_/ \_/ \_/ \_/ \_/ \_/
+//
+//==================================================================
+// Copyright © 2008/2016 Orce Scripts todos os direitos reservados.
+//===========|Nome do Script|=======================================
+// Nome: Amaury Arantes Januário
+//================|Autor|===========================================
+// Autor: Orce
+//============|Compatibilidade|=====================================
+// Emulador: brAthena
+//==================================================================
+prontera,143,194,4	script	[ Garota Negociante ]	4_F_01,{
+
+	mes "[Garota Negociante]";
+	mes "Olá, aqui você pode alugar um carrinho, pecopeco ou falcão depedendo de sua profissão.";
+	next;
+	mes "[Garota Negociante]";
+	if ((BaseClass == 5 || Class == 23|| Class == 4190 || Class == 4191) && !checkcart() && getskilllv(39)) setcart();
+	else if (BaseClass == 1 && !checkmount() && getskilllv(63)) setmount();
+	else if (BaseClass == 3 && !checkfalcon() && getskilllv(127)) setfalcon();
+	else
+	{
+		mes "Desculpe, mas não posso ajudar você.";
+		mes "Verifique se você já possui a habilidade necessária ou se já está com algo alugado!";
+		close;
+	}
+	mes "Aqui está, faça bom proveito!";
+	close;
+}

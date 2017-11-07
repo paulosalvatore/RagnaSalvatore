@@ -1,0 +1,48 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: hugel.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: Herc/brA Dev. Team                         |
+//   |--------------------------------------------------------|
+//   | Versões Herc/brA: 1.0/1.0                              |
+//   |--------------------------------------------------------|
+//   | Descrição: Aeroplano de Hugel                          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho brAthena [Axl]                           |
+//   |--------------------------------------------------------|
+//   | - Revisado: [Jeeffrey]                                 |
+//   \________________________________________________________/
+
+hugel,178,142,0	script	toairplane#hugel	WARPNPC,1,1,{
+	end;
+OnTouch:
+	mes "Para usar o aeroplano, você precisa pagar uma taxa de 1,200 Zenys ou possuir um Bilhete para Aeroplano.";
+	mes "Você deseja usar o serviço?";
+	next;
+	if (select("Sim:Não") == 1) {
+		if (countitem(7311) > 0) {
+			delitem 7311,1; // Bilhete para Aeroplano
+			warp "airplane",244,58;
+			end;
+		}
+		if (Zeny >= 1200) {
+			Zeny -= 1200;
+			warp "airplane",244,58;
+			end;
+		}
+		mes "Me desculpe, mas você não possui um Bilhete para Aeroplano e você não possui a quantidade de zenys suficientes para embarcar.";
+		mes "Lembre, a taxa de embarque é 1,200 zeny.";
+		close;
+	}
+	mes "Obrigado e tenha um bom dia.";
+	close;
+}

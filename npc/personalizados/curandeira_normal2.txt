@@ -1,0 +1,95 @@
+prontera,151,185,4	script	Curandeira#hG1-1::HealerG	979,{
+
+emotion 51;
+
+	if (getgroupid() < 1) goto nao_vip;
+
+
+
+                sc_start 32,1200000,10;        // Blessing                Duração: 240 sec
+		sc_start 30,1200000,10;        // Increase Agi                Duração: 240 sec				
+		sc_start SC_FOOD_STR,1200000,10;
+		sc_start SC_FOOD_AGI,1200000,10;
+		sc_start SC_FOOD_VIT,1200000,10;
+		sc_start SC_FOOD_INT,1200000,10;
+		sc_start SC_FOOD_DEX,1200000,10;
+		sc_start SC_FOOD_LUK,1200000,10;
+		atcommand "@repairall";
+		
+                skilleffect 34,0;        // Blessing
+
+                skilleffect 29,0;        // Increase Agi
+
+                sc_start 41,   1200000,  5;        // Gloria                Duração: 30 sec
+
+                sc_start 40,   1200000,  5;        // Magnificat                Duração: 90 sec
+
+				percentheal 100,100;
+
+				repairall;
+
+				dispbottom "[RagnaROX BR] Você é um player [VIP] Obrigado por Contribuir e Ajudar o Servidor !";
+
+	end;
+
+
+
+nao_vip:
+
+                sc_start 30,  1200000, 10;        // Blessing                Duração: 240 sec
+
+                sc_start 32,  1200000, 10;        // Increase Agi                Duração: 240 sec
+
+                skilleffect 34,0;        // Blessing
+
+                skilleffect 29,0;        // Increase Agi
+
+				percentheal 100,100;
+
+				dispbottom "[RagnaROX BR] Você não é [VIP] Agradecemos você por jogar aqui!";
+
+		end;
+
+}
+
+
+
+morocc,159,97,5	duplicate(HealerG)	Curandeira#hG2-2	979
+
+ayothaya,155,111,5	duplicate(HealerG)	Curandeira#hG2-3	979
+
+geffen,123,58,4	duplicate(HealerG)	Curandeira#hG2-4	979
+
+umbala,94,162,5	duplicate(HealerG)	Curandeira#hG2-5	979
+
+payon,165,233,5	duplicate(HealerG)	Curandeira#hG2-6	979
+
+alberta,185,144,5	duplicate(HealerG)	Curandeira#hG2-7	979
+
+aldebaran,135,119,5	duplicate(HealerG)	Curandeira#hG2-8	979
+
+izlude,125,118,5	duplicate(HealerG)	Curandeira#hG2-9	979
+
+xmas,149,136,5	duplicate(HealerG)	Curandeira#hG2-10	979
+
+comodo,188,162,5	duplicate(HealerG)	Curandeira#hG2-11	979
+
+amatsu,200,80,5	duplicate(HealerG)	Curandeira#hG2-12	979
+
+gonryun,164,130,5	duplicate(HealerG)	Curandeira#hG2-13	979
+
+yuno,152,186,5	duplicate(HealerG)	Curandeira#hG2-14	979
+
+niflheim,188,180,5	duplicate(HealerG)	Curandeira#hG2-15	979
+
+louyang,225,103,5	duplicate(HealerG)	Curandeira#hG2-16	979
+
+rachel,131,117,5	duplicate(HealerG)	Curandeira#hG2-17	979
+
+veins,212,124,5	duplicate(HealerG)	Curandeira#hG2-18	979
+
+sec_in02,129,162,6	duplicate(HealerG)	Curandeira#hG2-19	979
+
+bat_room,148,154,5	duplicate(HealerG)	Curandeira#hG2-20	979
+
+hugel,89,151,3	duplicate(HealerG)	Curandeira#hG2-21	979

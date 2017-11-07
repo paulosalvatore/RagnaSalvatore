@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/extra
+END
+configure
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/configure
+END
+configure.ac
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/configure.ac
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/.gitignore
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/brAthena/brAthena/!svn/ver/435/trunk/db
+END
+job_db2.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/brAthena/brAthena/!svn/ver/435/trunk/db/job_db2.txt
+END
+cashshop_db.conf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/129/trunk/db/cashshop_db.conf
+END
+GeoIP.dat
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/brAthena/brAthena/!svn/ver/1/trunk/db/GeoIP.dat
+END
+quest_db.conf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/206/trunk/db/quest_db.conf
+END
+roulette_db.conf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/129/trunk/db/roulette_db.conf
+END

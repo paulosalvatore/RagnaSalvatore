@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/brAthena/brAthena/!svn/ver/359/trunk/src/login
+END
+ipban.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/224/trunk/src/login/ipban.h
+END
+loginlog.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/284/trunk/src/login/loginlog.h
+END
+mac.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/mac.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/329/trunk/src/login/Makefile.in
+END
+account.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/account.h
+END
+mac.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/mac.h
+END
+ipban_sql.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/242/trunk/src/login/ipban_sql.c
+END
+login.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/login.c
+END
+loginlog_sql.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/285/trunk/src/login/loginlog_sql.c
+END
+account_sql.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/account_sql.c
+END
+login.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/359/trunk/src/login/login.h
+END

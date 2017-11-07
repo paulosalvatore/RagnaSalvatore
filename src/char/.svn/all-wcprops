@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/brAthena/brAthena/!svn/ver/453/trunk/src/char
+END
+int_homun.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_homun.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/258/trunk/src/char/Makefile.in
+END
+int_mail.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_mail.h
+END
+int_pet.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_pet.c
+END
+int_homun.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_homun.h
+END
+int_pet.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_pet.h
+END
+int_quest.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_quest.c
+END
+int_auction.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_auction.c
+END
+int_guild.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_guild.c
+END
+int_quest.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_quest.h
+END
+int_elemental.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_elemental.c
+END
+inter.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/444/trunk/src/char/inter.c
+END
+int_auction.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_auction.h
+END
+int_guild.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_guild.h
+END
+int_elemental.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_elemental.h
+END
+inter.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/inter.h
+END
+loginif.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/452/trunk/src/char/loginif.c
+END
+mapif.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/452/trunk/src/char/mapif.c
+END
+loginif.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/453/trunk/src/char/loginif.h
+END
+int_mercenary.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_mercenary.c
+END
+mapif.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/452/trunk/src/char/mapif.h
+END
+geoip.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/geoip.c
+END
+int_mercenary.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_mercenary.h
+END
+geoip.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/geoip.h
+END
+int_party.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_party.c
+END
+char.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/brAthena/brAthena/!svn/ver/452/trunk/src/char/char.c
+END
+int_storage.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_storage.c
+END
+int_party.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_party.h
+END
+pincode.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/359/trunk/src/char/pincode.c
+END
+char.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/brAthena/brAthena/!svn/ver/452/trunk/src/char/char.h
+END
+int_storage.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/224/trunk/src/char/int_storage.h
+END
+pincode.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/359/trunk/src/char/pincode.h
+END
+int_mail.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/235/trunk/src/char/int_mail.c
+END

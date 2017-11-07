@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/brAthena/brAthena/!svn/ver/435/trunk/db/re
+END
+item_packages.conf
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/238/trunk/db/re/item_packages.conf
+END
+map_zone_db.conf
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/435/trunk/db/re/map_zone_db.conf
+END
+skill_tree.conf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/435/trunk/db/re/skill_tree.conf
+END
+job_db.conf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/435/trunk/db/re/job_db.conf
+END
+PetTable.conf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/206/trunk/db/re/PetTable.conf
+END
+item_chain.conf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/235/trunk/db/re/item_chain.conf
+END
+BuffSpecial.conf
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/259/trunk/db/re/BuffSpecial.conf
+END
+map_cache.dat
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/267/trunk/db/re/map_cache.dat
+END
+Elemental.conf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/80/trunk/db/re/Elemental.conf
+END
+item_group.conf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/235/trunk/db/re/item_group.conf
+END

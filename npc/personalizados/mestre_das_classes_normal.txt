@@ -1,0 +1,506 @@
+prontera,151,190,4	script	Mestra Das Classes::jobmasterf	811,{
+//Mestra VIP INICIO
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+mes "[Valquiria]";
+//Classes em seu estado Final:
+if(Class == 23 || Class == 24 || Class == 25 || Class == 4047 || Class == 4049)
+		{mes "Você já está no seu Mais Alto Grau de sua Proffisão.";	close2; cutin "", 255; end;}
+
+if(Class >= 4060 && Class <= 4060)
+		{mes "Você já está no seu Mais Alto Grau de sua Proffisão.";	close2; cutin "", 255; end;}
+
+if(Class >= 4073 && Class <= 4079)
+		{mes "Você já está no seu Mais Alto Grau de sua Proffisão.";	close2; cutin "", 255; end;}
+
+//Aprendiz 1° Classes:
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class == 0)
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente.[Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de Habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir.";}
+		mes "Escolha a Profissão que deseja Seguir.";
+		switch(select("Espadachim:Mago:Arqueiro:Noviço:Mercador:Gatuno:Super Aprendiz:Justiceiro:Ninja:Taekwon:Cancelar"))
+		{
+		 case 1:
+			mes "Deseja mesmo se tornar Espadachim?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 1; 
+			close2; cutin "", 255; end;
+
+		 case 2:
+			mes "Deseja mesmo se tornar Mago?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 2; close2; cutin "", 255; end;
+
+		 case 3: 
+			mes "Deseja mesmo se tornar Arqueiro?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 3; close2; cutin "", 255; end;
+
+		 case 4: 
+			mes "Deseja mesmo se tornar Noviço?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 4; close2; cutin "", 255; end;
+
+		 case 5: 
+			mes "Deseja mesmo se tornar Mercador?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 5; close2; cutin "", 255; end;
+
+		 case 6: 
+			mes "Deseja mesmo se tornar Gatuno?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 6; close2; cutin "", 255; end;
+
+		 case 7: 
+			mes "Deseja mesmo se tornar Super Noviço?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 23; close2; cutin "", 255; end;
+
+		 case 8: 
+			mes "Deseja mesmo se tornar Justiceiro?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 24; close2; cutin "", 255; end;
+
+		 case 9: 
+			mes "Deseja mesmo se tornar Ninja?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 25; close2; cutin "", 255; end;
+		 
+		 case 10: 
+			mes "Deseja mesmo se tornar Taekwon?";
+			if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+			jobchange 4046; close2; cutin "", 255; end;
+		 
+		 case 11:
+			close2; cutin "", 255; end;											}		
+																}
+
+//1° Classes P/ 2° Classes:
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class == 1)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Cavaleiro:Templário"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Cavaleiro?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 7;	set FolowClass,7; set ADVJOB,Job_Lord_Knight; close2; cutin "", 255; end;
+		 
+		 case 2: 
+		 mes "Deseja mesmo se tornar Templário?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 14;	set FolowClass,14; set ADVJOB,Job_Paladin; close2; cutin "", 255; end;
+									}
+																}
+
+if(Class == 2)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Bruxo:Sábio"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Bruxo?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 9;	set FolowClass,9; set ADVJOB,Job_High_Wizard; close2; cutin "", 255; end;
+		 
+		 case 2: 
+		 mes "Deseja mesmo se tornar Sábio?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 16;	set FolowClass,16; set ADVJOB,Job_Professor; close2; cutin "", 255; end;
+									}
+																}
+if(Class == 3)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Caçador:"+ (Sex?"Bardo":"Odalisca") +""))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Caçador?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 11;	set FolowClass,11; set ADVJOB,Job_Sniper; close2; cutin "", 255; end;
+		 case 2: 
+		 mes "Deseja mesmo se tornar "+ (Sex?"Bardo":"Odalisca") +"?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 if(Sex==0){jobchange 20; set FolowClass,20; set ADVJOB,Job_Gypsy;}else{jobchange 19; set FolowClass,19; set ADVJOB,Job_Clown;} close2; cutin "", 255; end;
+									}
+																}
+
+if(Class == 4)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Sacerdote:Monge"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Sacerdote?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 8;	set FolowClass,8; set ADVJOB,Job_High_Priest; close2; cutin "", 255; end;
+		 case 2: 
+		 mes "Deseja mesmo se tornar Monge?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 15;	set FolowClass,15; set ADVJOB,Job_Champion; close2; cutin "", 255; end;
+									}
+																}
+if(Class == 5)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Ferreiro:Alquimista"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Ferreiro?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 10;	set FolowClass,10; set ADVJOB,Job_Whitesmith; close2; cutin "", 255; end;
+		 case 2: 
+		 mes "Deseja mesmo se tornar Alquimista?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 18;	set FolowClass,18; set ADVJOB,Job_Creator; close2; cutin "", 255; end;
+									}
+																}
+if(Class == 6)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Mercenário:Arruaceiro"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Mercenário?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 12;	set FolowClass,12; set ADVJOB,Job_Assassin_Cross; close2; cutin "", 255; end;
+		 case 2: 
+		 mes "Deseja mesmo se tornar Arruaceiro?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 17;	set FolowClass,17; set ADVJOB,Job_Stalker; close2; cutin "", 255; end;
+									}
+																}
+if(Class == 4046)
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";} 
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+
+		mes "Escolha a Profissão que deseja seguir.";
+		switch(select("Mestre Taekwon:Espiritualista"))
+		{
+		 case 1: 
+		 mes "Deseja mesmo se tornar Mestre Taekwon?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 4047;	set FolowClass,4047; close2; cutin "", 255; end;
+		 case 2: 
+		 mes "Deseja mesmo se tornar Espiritualista?";
+		 if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+		 jobchange 4049;	set FolowClass,4049; close2; cutin "", 255; end;
+									}
+																}
+//Renasceu!
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class >= 7 && Class <= 20)
+	{ if(BaseLevel<99){mes "Level Insuficiente. [Nescessário LV99)";}
+	  if(JobLevel<50){mes "Level de Profissão Insuficiente. [Nescessário LV50]";}
+	  if(Zeny<1000000){mes "Zeny Insuficiente (Você precisa de 1000000z para Renascer)";}
+	  if(BaseLevel<99 || JobLevel<50 || Zeny<1000000){mes "Sinto Muito, mas Você ainda não pode Renascer...";	close2; cutin "", 255; end;}
+
+		mes "Deseja mesmo Renascer?";
+		mes "Será Cobrado 1.000.000z para eu realizar o meu serviço e lhe dar uma nova vida.";
+		if(select("Não:Sim, Eu Quero!")==1){close2; cutin "", 255; end;}
+
+
+
+		jobchange 4001;
+		resetlvl(1);
+		set Zeny,Zeny-1000000;  
+		if(Class==7){set FolowClass,7; set ADVJOB,Job_Lord_Knight;}
+		if(Class==14){set FolowClass,14; set ADVJOB,Job_Paladin;}
+		if(Class==9){set FolowClass,9; set ADVJOB,Job_High_Wizard;}
+		if(Class==16){set FolowClass,16; set ADVJOB,Job_Professor;}
+		if(Class==11){set FolowClass,11; set ADVJOB,Job_Sniper;}
+		if(Class==19){set FolowClass,19; set ADVJOB,Job_Clown;}
+		if(Class==20){set FolowClass,20; set ADVJOB,Job_Gypsy;}
+		if(Class==8){set FolowClass,8; set ADVJOB,Job_High_Priest;}
+		if(Class==15){set FolowClass,15; set ADVJOB,Job_Champion;}
+		if(Class==10){set FolowClass,10; set ADVJOB,Job_Whitesmith;}
+		if(Class==18){set FolowClass,18; set ADVJOB,Job_Creator;}
+		if(Class==12){set FolowClass,12; set ADVJOB,Job_Assassin_Cross;}
+		if(Class==17){set FolowClass,17; set ADVJOB,Job_Stalker;}
+		close2; cutin "", 255; end;
+																}
+
+
+//Aprendiz Res P/ 1° Classes Res:
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class == 4001 && (FolowClass==7 || FolowClass==14 || "ADVJOB"=="Job_Lord_Knight" || "ADVJOB"=="Job_Paladin"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Espadachim T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4002; close2; cutin "", 255; end;		
+																}
+
+if(Class == 4001 && (FolowClass==9 || FolowClass==16 || "ADVJOB"=="Job_High_Wizard" || "ADVJOB"=="Job_Professor"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}		
+
+		mes "Deseja mesmo virar Mago T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4003; close2; cutin "", 255; end;	
+																}
+
+if(Class == 4001 && (FolowClass==11 || FolowClass==9 || "ADVJOB"=="Job_Sniper" || "ADVJOB"=="Job_Clown" || "ADVJOB"=="Job_Gypsy"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+	  
+		mes "Deseja mesmo virar Arqueiro T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4004; close2; cutin "", 255; end;
+																}
+
+if(Class == 4001 && (FolowClass==8 || FolowClass==15 || "ADVJOB"=="Job_High_Priest" || "ADVJOB"=="Job_Champion"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Noviço T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4005; close2; cutin "", 255; end;
+																}
+
+if(Class == 4001 && (FolowClass==10 || FolowClass==18 || "ADVJOB"=="Job_Whitesmith" || "ADVJOB"=="Job_Creator"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+	  
+		mes "Deseja mesmo virar Mercador T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4006; close2; cutin "", 255; end;
+																}
+
+if(Class == 4001 && (FolowClass==12 || FolowClass==17 || "ADVJOB"=="Job_Assassin_Cross" || "ADVJOB"=="Job_Stalker"))
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+	
+		mes "Deseja mesmo virar Gatuno T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4007; close2; cutin "", 255; end;
+																}
+
+//Super Aprendiz (Desativado
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+/*
+if(Class == 4001 && FolowClass==23)
+	{ if(BaseLevel<10){mes "Level Insuficiente. [Nescessário LV10+]";}
+	  if(JobLevel<10){mes "Level de Profissão Insuficiente. [Nescessário LV10]";}
+	  if(BaseLevel<10 || JobLevel<10){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+	  if(SkillPoint>0){mes "Você ainda tem Pontos de habilidades sobrando. Distribua seus pontos primeiro para depois escolher a profissão que deseja seguir."; close2; cutin "", 255; end;}
+	  
+		mes "Deseja mesmo virar Super Aprendiz T.?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4190; close2; cutin "", 255; end;
+																}
+*/
+
+//1° Classes Res P/ 2° Classes Res:
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class == 4002 && (FolowClass==7 || "ADVJOB"=="Job_Lord_Knight"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Lorde?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4008; close2; cutin "", 255; end;
+																}
+
+if(Class == 4002 && (FolowClass==14 || "ADVJOB"=="Job_Paladin"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Paladino?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4015; close2; cutin "", 255; end;
+																}
+
+
+if(Class == 4003 && (FolowClass==9 || "ADVJOB"=="Job_High_Wizard"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Arquimago?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4010; close2; cutin "", 255; end;
+																}
+
+if(Class == 4003 && (FolowClass==16 || "ADVJOB"=="Job_Professor"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Professor?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4017; close2; cutin "", 255; end;
+																}
+
+
+if(Class == 4004 && (FolowClass==11 || "ADVJOB"=="Job_Sniper"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Atirador de Elite?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4012; close2; cutin "", 255; end;
+																}
+
+if(Class == 4004 && (FolowClass==19 || "ADVJOB"=="Job_Clown" || "ADVJOB"=="Job_Gypsy"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar "+ (Sex?"Menestrel":"Cigana") +"?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4020; close2; cutin "", 255; end;
+																}
+
+
+if(Class == 4005 && (FolowClass==8 || "ADVJOB"=="Job_High_Priest"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Sumo Sacerdote?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4009; close2; cutin "", 255; end;
+																}
+
+if(Class == 4005 && (FolowClass==15 || "ADVJOB"=="Job_Champion"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Mestre?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4016; close2; cutin "", 255; end;
+																}
+
+
+if(Class == 4006 && (FolowClass==10 || "ADVJOB"=="Job_Whitesmith"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Mestre-Ferreiro?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4011; close2; cutin "", 255; end;
+																}
+
+if(Class == 4006 && (FolowClass==18 || "ADVJOB"=="Job_Creator"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Criador?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4019; close2; cutin "", 255; end;
+																}
+
+
+if(Class == 4007 && (FolowClass==12 || "ADVJOB"=="Job_Assassin_Cross"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Algoz?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4013;	close2; cutin "", 255; end;
+																}
+
+if(Class == 4007 && (FolowClass==17 || "ADVJOB"=="Job_Stalker"))
+	{ if(BaseLevel<50){mes "Level Insuficiente. [Nescessário LV50+]";}
+	  if(JobLevel<40){mes "Level de Profissão Insuficiente. [Nescessário LV40+]";}
+	  if(BaseLevel<50 || JobLevel<40){mes "Sinto Muito, mas Você ainda não está preparado...";	close2; cutin "", 255; end;}
+		
+		mes "Deseja mesmo virar Desordeiro?";
+		if(select("Não:Sim")==1){close2; cutin "", 255; end;}
+
+		jobchange 4018;	close2; cutin "", 255; end;
+																}
+
+//2° Classes R P/ 3° Classes R:
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+if(Class == 4008){}
+if(Class == 4009){}
+if(Class == 4010){}
+if(Class == 4011){}
+if(Class == 4012){}
+if(Class == 4013){}
+if(Class == 4014){}
+if(Class == 4015){}
+if(Class == 4016){}
+if(Class == 4017){}
+if(Class == 4018){}
+if(Class == 4019){}
+if(Class == 4020 || Class == 4021){}
+mes "Desculpe-me, mas não posso fazer mais nada por você.";
+close2; cutin "", 255; end;
+
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//Mestra VIP FIM
+}

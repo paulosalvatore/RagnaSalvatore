@@ -1,0 +1,12 @@
+prontera,164,192,4	script	Upador de Clã	430,{
+
+        mes "Olá¡ Sr"+(Sex ? "." : "a.")+" "+strcharinfo(0)+"";
+	mes "Deseja Upar seu Clã ?";
+	if (select("Sim:Não") == 2)	{
+		mes "Tudo bem Sr. Volte Se precisar";
+		close;
+	}
+	mes "Seu Clã foi upado com sucesso !!!";
+	atcommand "@glvl 50";
+	close;
+}

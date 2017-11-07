@@ -1,0 +1,78 @@
+//===== Hercules Script ======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.2
+//===== Description: =========================================
+//= Basic Healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//= 1.2 Fix variables and character stuck at healing
+//============================================================
+
+-	script	Curandeira	-1,{
+
+	.@price = 0;	// Zeny necessário para curar
+	.@Buffs = 0;	// Também buffar players? (1: sim / 0: não)
+	.@Delay = 0;	// Delay da cura, em segundos
+
+	if (@HD > gettimetick(2)) end;
+	if (.@price) {
+		message strcharinfo(0),"Curar custa "+.@price+" Zeny.";
+		if (Zeny < .@price) end;
+		if(select("^0055FFCurar^000000:^777777Cancelar^000000") == 2) close;
+		Zeny -= .@price;
+	}
+	specialeffect2 EF_HEAL2; percentheal 100,100;
+	if (.@Buffs) {
+		specialeffect2 EF_INCAGILITY; sc_start SC_INC_AGI,240000,10;
+		specialeffect2 EF_BLESSING; sc_start SC_BLESSING,240000,10;
+	}
+	if (.@Delay) @HD = gettimetick(2)+.@Delay;
+	end;
+}
+
+
+// Duplicates
+//============================================================
+alberta,25,240,6	duplicate(Curandeira)	Curandeira#alb	4_PORING
+aldebaran,135,118,6	duplicate(Curandeira)	Curandeira#alde	4_PORING
+amatsu,200,79,4	duplicate(Curandeira)	Curandeira#ama	4_PORING
+ayothaya,207,169,6	duplicate(Curandeira)	Curandeira#ayo	4_PORING
+comodo,184,158,6	duplicate(Curandeira)	Curandeira#com	4_PORING
+einbech,57,36,6	duplicate(Curandeira)	Curandeira#einbe	4_PORING
+einbroch,57,202,6	duplicate(Curandeira)	Curandeira#einbr	4_PORING
+geffen,115,72,6	duplicate(Curandeira)	Curandeira#gef	4_PORING
+gonryun,156,122,6	duplicate(Curandeira)	Curandeira#gon	4_PORING
+hugel,89,150,6	duplicate(Curandeira)	Curandeira#hug	4_PORING
+izlude,125,118,5	duplicate(Curandeira)	Curandeira#izl	4_PORING
+jawaii,250,139,4	duplicate(Curandeira)	Curandeira#jaw	4_PORING
+lighthalzen,152,100,6	duplicate(Curandeira)	Curandeira#lhz	4_PORING
+louyang,226,103,4	duplicate(Curandeira)	Curandeira#lou	4_PORING
+manuk,272,144,6	duplicate(Curandeira)	Curandeira#man	4_PORING
+mid_camp,203,289,6	duplicate(Curandeira)	Curandeira#mid	4_PORING
+moc_ruins,72,164,4	duplicate(Curandeira)	Curandeira#moc	4_PORING
+morocc,153,97,6	duplicate(Curandeira)	Curandeira#mor	4_PORING
+moscovia,220,191,4	duplicate(Curandeira)	Curandeira#mos	4_PORING
+niflheim,212,182,5	duplicate(Curandeira)	Curandeira#nif	4_PORING
+payon,179,106,4	duplicate(Curandeira)	Curandeira#pay	4_PORING
+prontera,162,193,4	duplicate(Curandeira)	Curandeira#prt	4_PORING
+rachel,125,116,6	duplicate(Curandeira)	Curandeira#rac	4_PORING
+splendide,201,153,4	duplicate(Curandeira)	Curandeira#spl	4_PORING
+thor_camp,249,74,4	duplicate(Curandeira)	Curandeira#thor	4_PORING
+umbala,105,148,3	duplicate(Curandeira)	Curandeira#umb	4_PORING
+veins,217,121,4	duplicate(Curandeira)	Curandeira#ve	4_PORING
+xmas,143,136,4	duplicate(Curandeira)	Curandeira#xmas	4_PORING
+yuno,164,45,4	duplicate(Curandeira)	Curandeira#yuno	4_PORING
+
+// Duplicates (Renewal)
+//============================================================
+brasilis,194,221,6	duplicate(Curandeira)	Curandeira#bra	4_PORING
+dewata,195,187,4	duplicate(Curandeira)	Curandeira#dew	4_PORING
+dicastes01,201,194,4	duplicate(Curandeira)	Curandeira#dic	4_PORING
+ecl_in01,45,60,4	duplicate(Curandeira)	Curandeira#ecl	4_PORING
+malangdo,132,114,6	duplicate(Curandeira)	Curandeira#mal	4_PORING
+malaya,205,205,6	duplicate(Curandeira)	Curandeira#ma	4_PORING
+mora,55,152,4	duplicate(Curandeira)	Curandeira#mora	4_PORING

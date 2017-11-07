@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/brAthena/brAthena/!svn/ver/271/trunk/src/tool
+END
+conversor.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/271/trunk/src/tool/conversor.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/224/trunk/src/tool/Makefile.in
+END
+mapcache.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/247/trunk/src/tool/mapcache.c
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/brAthena/brAthena/!svn/ver/227/trunk/sql/tools
+END
+conversor_senhas.sql
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/227/trunk/sql/tools/conversor_senhas.sql
+END
+conversor_engine_myisam.sql
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/brAthena/brAthena/!svn/ver/227/trunk/sql/tools/conversor_engine_myisam.sql
+END
+conversor_engine_innodb.sql
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/brAthena/brAthena/!svn/ver/227/trunk/sql/tools/conversor_engine_innodb.sql
+END

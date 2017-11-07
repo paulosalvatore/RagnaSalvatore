@@ -1,0 +1,46 @@
+//ARMAS
+xmas_in,32,39,5	shop	Vendedor de Espadas	4_M_JOB_KNIGHT1,1101:-1,1104:-1,1107:-1,1110:-1,1113:-1,1123:-1,1122:-1,1126:-1,1119:-1,1129:-1,1116:-1,1151:-1,1154:-1,1157:-1,1160:-1,1163:-1
+xmas_in,20,34,7	shop	Vendedor de Katares	2_M_SAGE_OLD,1250:-1,1252:-1,1254:-1
+xmas_in,39,28,3	shop	Vendedor de Machados	1_M_SMITH,1301:-1,1351:-1,1354:-1,1357:-1,1360:-1
+xmas_in,27,29,7	shop	Vendedor de Bastões	1_M_WIZARD,1601:-1,1604:-1,1607:-1,1610:-1
+xmas_in,38,42,5	shop	Vendedor de Arcos	4_M_JOB_HUNTER,1701:-1,1704:-1,1707:-1,1710:-1,1716:-1,1715:-1,1718:-1
+xmas_in,33,35,0	shop	Vendedor de Clavas	4_M_ALCHE_C,1501:-1,1504:-1,1507:-1,1510:-1,1513:-1,1516:-1,1519:-1,1522:-1
+xmas_in,35,30,5	shop	Vendedor de Adagas	4_M_YOYOROGUE,1201:-1,1204:-1,1207:-1,1210:-1,1213:-1,1216:-1,1219:-1,1222:-1
+xmas_in,31,41,3	shop	Vendedor de Lanças	4_M_JOB_BLACKSMITH,1401:-1,1404:-1,1407:-1,1451:-1,1454:-1,1457:-1,1460:-1,1463:-1,1410:-1
+xmas_in,36,37,3	shop	Vendedor de Instrumentos	1_M_BARD,1901:-1,1903:-1,1905:-1,1907:-1,1909:-1
+xmas_in,31,30,3	shop	Vendedor de Chicotes	4_M_REIDIN_KURS,1950:-1,1952:-1,1954:-1,1956:-1,1958:-1,1960:-1
+xmas_in,30,26,5	shop	Vendedor de Livros	2_M_SAGE_OLD,1553:-1,1554:-1,1555:-1,1556:-1,1557:-1,1558:-1,1550:-1,1551:-1,1552:-1
+xmas_in,41,25,3	shop	Vendedor de Luvas	4_M_MONK,1801:-1,1803:-1,1805:-1,1807:-1,1809:-1,1811:-1
+xmas_in,34,21,3	shop	Armas de Fogo	4_M_HUMAN_02,13100:4500,13151:17500,13102:20000,13104:48000
+
+//EQUIPAMENTOS
+xmas_in,42,40,3	shop	Vendedora de Sapatos	1_F_01,2401:-1,2403:-1,2405:-1,2411:-1
+xmas_in,40,42,3	shop	Vendedora de Acessórios	1_F_02,2628:-1,2608:-1,2627:-1,2611:-1,2610:-1,2613:-1
+xmas_in,38,44,3	shop	Vendedora de Capas	1_F_03,2501:-1,2503:-1,2505:-1
+xmas_in,23,40,5	shop	Vendedora de Chapéus	1_F_04,2218:-1,2208:-1,2211:-1,2212:-1,2220:-1,2203:-1,2205:-1,2201:-1,2241:-1,2232:-1,2216:-1,2239:-1,2226:-1,2243:-1,2242:-1,2228:-1,2230:-1
+xmas_in,30,47,4	shop	Vendedora de Armaduras	4_F_CRU,2301:-1,2303:-1,2305:-1,2321:-1,2328:-1,2323:-1,2332:-1,2307:-1,2309:-1,2312:-1,2325:-1,2314:-1,2330:-1,2335:-1,2316:-1,2340:-1,2341:-1
+xmas_in,35,47,4	shop	Vendedora de Escudos	1_F_ORIENT_03,2101:-1,2103:-1,2109:-1,2105:-1,2107:-1,2110:-1,2111:-1
+
+prontera,164,173,3	script	[ Mercado Negro ]::Mercado	4_M_CATMAN2,{ 
+
+	mes "[Mercado Negro]";
+	mes "Deseja ir para a central de lojas?";
+	next;
+	if (select("^0084ff[ ? ]^000000 Sim, claro!:^ff0000[ ? ]^000000 Não, obrigado!") == 2) {
+		mes "[Mercado Negro]";
+		mes "Volte sempre!";
+		close;
+	}
+	
+		mes "[Mercado Negro]";
+		mes "Boas Compras!";
+		close2;
+		warp "xmas_in",	44,	33;
+		end;
+
+}
+
+geffen,121,56,0	duplicate(Mercado)	[ Mercado Negro ]#2	4_M_CATMAN2
+morocc,175,89,1	duplicate(Mercado)	[ Mercado Negro ]#3	4_M_CATMAN2
+alberta,38,240,3	duplicate(Mercado)	[ Mercado Negro ]#4	4_M_CATMAN2
+payon,179,87,1	duplicate(Mercado)	[ Mercado Negro ]#5	4_M_CATMAN2

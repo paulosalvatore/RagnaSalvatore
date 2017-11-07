@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig
+END
+scanner.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/210/trunk/3rdparty/libconfig/scanner.h
+END
+parsectx.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/parsectx.h
+END
+libconfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/libconfig.h
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/Makefile.in
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/LICENSE
+END
+scanctx.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/scanctx.c
+END
+AUTHORS
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/AUTHORS
+END
+strbuf.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/strbuf.c
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/ChangeLog
+END
+wincompat.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/wincompat.h
+END
+scanctx.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/scanctx.h
+END
+strbuf.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/strbuf.h
+END
+libconfig-1.4.9
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/libconfig-1.4.9
+END
+grammar.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/222/trunk/3rdparty/libconfig/grammar.c
+END
+scanner.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/210/trunk/3rdparty/libconfig/scanner.c
+END
+grammar.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/222/trunk/3rdparty/libconfig/grammar.h
+END
+libconfig.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/libconfig/libconfig.c
+END

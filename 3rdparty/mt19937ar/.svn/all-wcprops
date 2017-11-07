@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/mt19937ar
+END
+mt19937ar.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/mt19937ar/mt19937ar.c
+END
+mtTest.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/mt19937ar/mtTest.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/235/trunk/3rdparty/mt19937ar/Makefile.in
+END
+mt19937ar.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/mt19937ar/mt19937ar.h
+END
+mt19937ar.out
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/mt19937ar/mt19937ar.out
+END
+readme-mt.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/mt19937ar/readme-mt.txt
+END

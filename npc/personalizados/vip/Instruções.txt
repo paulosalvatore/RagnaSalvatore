@@ -1,0 +1,24 @@
+OBS: Abrir os arquivos em Notepad++
+
+Primeiro Passo Instalar os Nps no Emulador
+
+Segundo Passo
+- Você tem que fazer uma alteração no npc caso use modo Renewal, pois você deverá procurar
+essas linhas no script de vendedora de vip
+
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@15d+",`group` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@30d+",`level` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+
+Fazendo a substituição por essa
+
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@15d+",`level` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@30d+",`group` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+
+OBS: Isso somente no NPC: VENDEDORA_DE_VIP.TXT
+
+Terceiro Passo
+- Você deve colocar a tabela no banco de dados para está tendo o seu funcionamento correto
+
+São essas:
+ALTER TABLE `login` ADD `diasvip` INT(4) NOT NULL DEFAULT '0';
+ALTER TABLE `login` ADD `vipdia` INT(4) NOT NULL DEFAULT '0';

@@ -1,0 +1,146 @@
+prontera,152,192,6	script	Mestre das Classes	856,{
+
+if(Class > 4007 && Class < 4023 || Class > 4046 && Class < 4050 || Class > 4029 && Class < 4046 || Class == 4045){
+mes "Não posso fazer nada por você.";
+close;
+}
+
+//Configurações
+set .@server$,"WagnaWave";
+set .@item,ID_ITEM;
+set .@qitem,Quantidade_Do_Item;
+set .@upar,1; // Padrão 1, (1 - Upar nível máximo , 0 - Não upar nível máximo);
+set .@allstats,0; //Padrão 0, (0 - Não dará nenhum atributos, Qualquer outro número será o número do AllStats, colocar o do seu servidor no caso;
+//Fim das configurações
+
+mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+mes "Bem vind"+(Sex?"o":"a")+" ao "+.@server$+" "+strcharinfo(0)+"";
+next;
+mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+mes "Bem, antes de começar a se divertir neste novo mundo, precisamos preenche alguns dados.";
+next;
+mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+mes "Qual será sua classe?";
+callfunc "mestradasclasses";
+if(.@upar +1){
+set BaseLevel,BaseLevel+255;
+set JobLevel,JobLevel+120;
+}
+if(.@allstats!=0){
+statusup2 bStr,.@allstats;
+statusup2 bAgi,.@allstats;
+statusup2 bVit,.@allstats;
+statusup2 bInt,.@allstats;
+statusup2 bDex,.@allstats;
+statusup2 bLuk,.@allstats;
+}
+//savepoint "prontera",155,180;
+dispbottom "Personagem salvo em Payon";
+next;
+mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+mes "Lhe darei alguns itens para ajudar em sua Jornada !";
+next;
+mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+mes "Lembre-se de fazer as Quest's para pegar equipamentos com sua cara !";
+close2;
+npctalk "Boa Sorte "+strcharinfo(0)+" !";
+sleep2 2000;
+getitem .@item,.@qitem;
+atcommand "@allskill";
+//warp "SavePoint",0,0;
+end;
+
+}
+
+//Insira sua Mestra das classes em baixo do cabeçalho se quiser somente se souber scriptar e como funciona function.
+function	script	mestradasclasses	{
+
+	if(Class != 0){
+	next;
+	mes "[^3CB371Recepcionista "+.@server$+"^000000]";
+	mes "Você já escolheu sua profissão intruso !";
+	close2;
+	//warp "prontera",150,150;
+	}
+	switch(select("Classes Normais:Classes Bebês"))
+	{
+		case 1:
+			switch(select("2-1T:2-2T:Expandidas"))
+			{
+				case 1:
+					switch(select("Lorde:Sumo-Sacerdote:Arquimago:Mestre-Ferreiro:Sniper:Algoz"))
+					{
+						case 1: jobchange 4008; return;
+						case 2: jobchange 4009; return;
+						case 3: jobchange 4010; return;
+						case 4: jobchange 4011; return;
+						case 5: jobchange 4012; return;
+						case 6: jobchange 4013; return;
+					}
+
+
+				case 2:
+					switch(select("Paladino:Mestre:Professor:Desordeiro:Criador:Menestrel/Cigana"))
+					{
+						case 1: jobchange 4015; return;
+						case 2: jobchange 4016; return;
+						case 3: jobchange 4017; return;
+						case 4: jobchange 4018; return;
+						case 5: jobchange 4019; return;
+						case 6: if(!Sex){jobchange 4021;}else{jobchange 4020;} return;
+					}
+
+				case 3:
+					switch(select("Mestre Taekwon:Espiritualista:Justiceiro:Ninja:Super Aprendiz"))
+					{
+
+					case 1: jobchange 4047; return;
+					case 2: jobchange 4049; return;
+					case 3: jobchange 24; return;
+					case 4: jobchange 25; return;
+					case 5: jobchange 23; return;
+					}
+			}
+	
+		case 2:
+			switch(select("2-1:2-2:Expandidas"))
+			{
+			
+				case 1:
+					switch(select("Cavaleiro:Sacerdote:Bruxo:Ferreiro:Caçador:Mercenário"))
+					{
+					case 1: jobchange 4030; return;
+					case 2: jobchange 4031; return;
+					case 3: jobchange 4032; return;
+					case 4: jobchange 4033; return;
+					case 5: jobchange 4034; return;
+					case 6: jobchange 4035; return;
+					}
+
+
+				case 2:
+					switch(select("Templário:Monge:Sábio:Arruaceiro:Alquimista:Bardo/Odalisca"))
+					{
+					case 1: jobchange 4037; return;
+					case 2: jobchange 4038; return;
+					case 3: jobchange 4039; return;
+					case 4: jobchange 4040; return;
+					case 5: jobchange 4041; return;
+					case 6: if(!Sex){jobchange 4043;}else{jobchange 4042;} end;
+					}
+
+				case 3:
+					select("Super Bebê");
+					jobchange 4045; return;                                      
+			}
+	}
+	return;
+
+
+}
+
+
+new_1-1	mapflag	nowarpto
+new_1-1	mapflag	nowarp
+new_1-1	mapflag	notrade
+

@@ -1,0 +1,192 @@
+//==============================================================//
+//   _    _ _____     _____           _       _                 //
+//  | |  | |  __ \   / ____|         (_)     | |                //
+//  | |__| | |  | | | (___   ___ _ __ _ _ __ | |_ ___           //
+//  |  __  | |  | |  \___ \ / __| '__| | '_ \| __/ __|          //
+//  | |  | | |__| |  ____) | (__| |  | | |_) | |_\__ \          //
+//  |_|  |_|_____/  |_____/ \___|_|  |_| .__/ \__|___/          //
+//   Hurican Dooders Script's ™        | |                      //
+//                                     |_|                      //
+//                                                              //
+// Vendedor de Dias VIP, por Cash (#CASHPOINTS)                 //
+// Versão 1.0                                                   //
+// Compatibilidade: Cronus & brAthena                           //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//====================Tabela Sql====================//
+// ALTER TABLE `login` ADD `diasvip` INT(4) NOT NULL DEFAULT '0';
+// ALTER TABLE `login` ADD `vipdia` INT(4) NOT NULL DEFAULT '0';
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//===Substituir as linhas existem,dependendo da versão usada===//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//================Renewal = Renovação===============//
+// query_sql "update `login` SET `diasvip` = `diasvip`+"+@15d+",`level` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+// query_sql "update `login` SET `diasvip` = `diasvip`+"+@30d+",`group` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//===================Pré-Renewal===================//
+// query_sql "update `login` SET `diasvip` = `diasvip`+"+@15d+",`group` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+// query_sql "update `login` SET `diasvip` = `diasvip`+"+@30d+",`level` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================//
+prontera,147,167,5	script	Vendedora VIP	91,{
+//===================== Configurações ==========================//
+set @1d, "1"; // Dias configuraveis(I).       //
+set @7d, "7"; // Dias configuraveis(II).      //
+set @15d, "15"; // Dias configuraveis(III).       //
+set @30d, "30"; // Dias configuraveis(IV).      //
+set @lvl, "1"; // Level vip.                   //
+set @preco1, "1"; // Preço do vip de 1 dia.     //
+set @preco2, "7"; // Preço do vip de 7 dias.     //
+set @preco3, "15"; // Preço do vip de 15 dias.     //
+set @preco4, "25"; // Preço do vip de 30 dias.     //
+set @vip$,"[^00FFFFVendedora VIP^000000]";       // Nome do NPC //
+set @site$,"^EE0000www.ragnaplay.com.br/vip^000000";  // Seu site     //
+//===================== Fim das Configurações ==================//
+ 
+mes @vip$;
+mes "Olá ^0000FF"+strcharinfo(0);
+mes "^000000Você tem ^FF6600"+#CASHPOINTS+"^000000 de créditos";
+next;
+ 
+mes @vip$;
+mes "Sou uma vendedora ^000EEEVIP^000000, e vendo Quatro tipos de [^000EEEPlano VIP^000000]";
+mes "você está interessado?";
+next;
+ 
+menu "- Sim",L_Sim,"- Não",L_Nao;
+L_Nao:
+mes @vip$;
+mes "OK, volte quando estiver preparado para negociar!";
+close;
+ 
+L_Sim:
+mes @vip$;
+mes "Escolha o tipo de [^000EEEPlano VIP^000000], tenho de:";
+mes "[^FF00001 dia^000000]";
+mes "[^FF00007 dias^000000]";
+mes "[^FF000015 dias^000000]";
+mes "[^FF000030 dias^000000]";
+mes "Você irá querer qual?";
+next;
+menu "- 1 Dia",L_1D,"- 7 Dias",L_7D,"- 15 Dias",L_15D,"- 30 Dias",L_30D,"- Nenhum",fechar;
+L_1D:
+mes @vip$;
+mes "Huuuum, Plano de ^FF0000"+@1d+" dia?^000000 Para aderir este plano você precisará ter ^FF6600"+@preco1+"^000000 de créditos.";
+mes "Então vai querer?";
+next;
+if(select("- Sim:- Não") == 2){
+mes @vip$;
+mes "OK, volte quando quiser negociar seus créditos!";
+close;
+}
+if(#CASHPOINTS >= @preco1){
+set #CASHPOINTS,#CASHPOINTS-@preco1;
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@1d+",`group_id` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+mes @vip$;
+mes "Obrigada por contribuir para o servidor!";
+mes "Acesse já o site ^339966"+@site$+"^000000 e veja os comandos ^FF6600VIP^000000 e tenha um bom jogo!";
+next;
+mes @vip$;
+mes "Pronto, agora você pode deslogar  para a ativação do seu [^000EEEMaster Plano VIP^000000]";
+close;
+}
+mes @vip$;
+mes "Você não possui créditos nescessários!";
+mes "Para saber como adquirir crédito acesse o site:";
+mes "^339966"+@site$+"^000000";
+close;
+L_7D:
+mes @vip$;
+mes "huuuum, Plano de ^FF0000"+@7d+" dias?^000000";
+mes "Para aderir este plano você precisará ter ^FF6600"+@preco2+"^000000 de créditos.";
+mes "Então vai querer?";
+next;
+if(select("- Sim:- Não") == 2){
+mes @vip$;
+mes "OK, volte quando quiser negociar seus créditos!";
+close;
+}
+if(#CASHPOINTS >= @preco2){
+set #CASHPOINTS,#CASHPOINTS-@preco2;
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@7d+",`group_id` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+mes @vip$;
+mes "Obrigada por contribuir para o servidor!";
+mes "Acesse já o site ^339966"+@site$+"^000000 e veja os comandos ^FF6600VIP^000000 e tenha um bom jogo!";
+next;
+mes @vip$;
+mes "Pronto, agora você pode deslogar para a ativação do [^000EEEMaster Plano VIP^000000]";
+close;
+}
+mes @vip$;
+mes "Você não possui créditos nescessários!";
+mes "Para saber como adquirir crédito acesse o site:";
+mes "^339966"+@site$+"^000000";
+close;
+L_15D:
+mes @vip$;
+mes "huuuum, Plano de ^FF0000"+@15d+" dias?^000000";
+mes "Para aderir este plano você precisará ter ^FF6600"+@preco3+"^000000 de créditos.";
+mes "Então vai querer?";
+next;
+if(select("- Sim:- Não") == 2){
+mes @vip$;
+mes "OK, volte quando quiser negociar seus créditos!";
+close;
+}
+if(#CASHPOINTS >= @preco3){
+set #CASHPOINTS,#CASHPOINTS-@preco3;
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@15d+",`group_id` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+mes @vip$;
+mes "Obrigada por contribuir para o servidor!";
+mes "Acesse já o site ^339966"+@site$+"^000000 e veja os comandos ^FF6600VIP^000000 e tenha um bom jogo!";
+next;
+mes @vip$;
+mes "Pronto, agora você pode deslogar para a ativação do [^000EEEMaster Plano VIP^000000]";
+close;
+}
+mes @vip$;
+mes "Você não possui créditos nescessários!";
+mes "Para saber como adquirir crédito acesse o site:";
+mes "^339966"+@site$+"^000000";
+close;
+
+L_30D:
+mes @vip$;
+mes "huuuum, Plano de ^FF0000"+@30d+" dias?^000000";
+mes "Para aderir este plano você precisará ter ^FF6600"+@preco4+"^000000 de créditos.";
+mes "Então vai querer?";
+next;
+if(select("- Sim:- Não") == 2){
+mes @vip$;
+mes "OK, volte quando quiser negociar seus créditos!";
+close;
+}
+if(#CASHPOINTS >= @preco4){
+set #CASHPOINTS,#CASHPOINTS-@preco4;
+query_sql "update `login` SET `diasvip` = `diasvip`+"+@30d+",`group_id` = "+@lvl+" WHERE `account_id`='"+getcharid(3)+"'";
+mes @vip$;
+mes "Obrigada por contribuir para o servidor!";
+mes "Acesse já o site ^339966"+@site$+"^000000 e veja os comandos ^FF6600VIP^000000 e tenha um bom jogo!";
+next;
+mes @vip$;
+mes "Pronto, agora você pode deslogar para a ativação do [^000EEEMaster Plano VIP^000000]";
+close;
+}
+mes @vip$;
+mes "Você não possui créditos nescessários!";
+mes "Para saber como adquirir crédito acesse o site:";
+mes "^339966"+@site$+"^000000";
+close;
+
+fechar:
+close;
+//====================== "Balão de Chat" =============//
+OnInit:
+ waitingroom "",0;
+  OnTimer2000:
+   setarray .@Display$,"Compre já seu VIP!","Adquira comandos exclusivos!","VIP para Todos!";
+    set .@msg, rand(getarraysize(.@Display$));
+    delwaitingroom;
+     waitingroom .@Display$[.@msg],0;
+      initnpctimer;
+//===============================================//
+}

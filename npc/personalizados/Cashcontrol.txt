@@ -1,0 +1,75 @@
+-	script	CashControl	-1,{ 
+OnPCLoginEvent: 
+set @nunsrow,query_sql("SELECT `cashid`, `cashamt` FROM `offcash` WHERE `account_id`='"+getcharid(3)+"'",@cashid,@cashamt); 
+
+for (set @i,0; @i < @nunsrow; set @i,@i+1) 
+{ 
+atcommand "@cash " + @cashamt[@i]; 
+query_sql "DELETE FROM `offcash` WHERE `cashid`='"+@cashid[@i]+"'"; 
+
+mes "Você acaba de receber " + @cashamt[@i] + " pontos de cash."; 
+close2; 
+} 
+
+end; 
+} 
+
+prontera,164,166,5	script	Cash Control	864,{ 
+if (getgmlevel() < 99) 
+{ 
+mes "Somente os Administradores podem usar meus serviços!"; 
+close; 
+} 
+
+mes "[Cash Control]"; 
+mes "O que deseja?"; 
+next; 
+switch(select("Adicionar Cash:Cancelar")) 
+{ 
+case 1: 
+mes "[Cash Control]"; 
+mes "Digite o login para adicionar o cash."; 
+next; 
+input .login$; 
+
+set .nunsrow,query_sql("SELECT `account_id` FROM `login` WHERE `userid`='"+.login$+"'",.accid); 
+if (.nunsrow == 0) 
+{ 
+mes "Está conta não existe."; 
+next;
+close;
+break; 
+} 
+
+mes "[Cash Control]"; 
+mes "Digite a quantidade de cash."; 
+next; 
+input .cash; 
+
+mes "[Cash Control]"; 
+mes "Deseja adicionar " + .cash + " pontos de cash na conta " + .login$ + "?"; 
+if (select("Sim.", "Não.") == 2) break; 
+
+if (isloggedin(.accid)) 
+{ 
+set .old,getcharid(3); 
+attachrid(.accid); 
+atcommand "@cash " + .cash; 
+announce "Você acaba de receber " + .cash + " pontos de cash.",bc_self; 
+attachrid(.old); 
+} 
+else 
+{ 
+query_sql "INSERT INTO `offcash`(`account_id`,`cashamt`) VALUES ('"+.accid+"','"+.cash+"')"; 
+} 
+
+mes "Adicionado."; 
+next;
+close;
+break; 
+case 2: 
+mes "[Cash Control]"; 
+mes "Até mais."; 
+close; 
+} 
+} 

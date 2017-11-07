@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/doc
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/doc/Makefile.in
+END
+libconfig.texi
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/doc/libconfig.texi
+END
+LGPL.texi
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/doc/LGPL.texi
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/brAthena/brAthena/!svn/ver/1/trunk/3rdparty/libconfig/extra/doc/Makefile
+END

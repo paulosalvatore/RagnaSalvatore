@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/brAthena/brAthena/!svn/ver/161/trunk/npc/mapflag
+END
+nopvp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nopvp.txt
+END
+pvp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/pvp.txt
+END
+nowarp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nowarp.txt
+END
+partylock.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/partylock.txt
+END
+nopenalty.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nopenalty.txt
+END
+night.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/night.txt
+END
+nowarpto.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nowarpto.txt
+END
+noloot.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noloot.txt
+END
+noskill.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noskill.txt
+END
+zone.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/zone.txt
+END
+noreturn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noreturn.txt
+END
+noicewall.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noicewall.txt
+END
+nightmare.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nightmare.txt
+END
+jail.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/jail.txt
+END
+pvp_noparty.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/pvp_noparty.txt
+END
+reset.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/reset.txt
+END
+gvg.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/gvg.txt
+END
+skillduration.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/skillduration.txt
+END
+pvp_noguild.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/pvp_noguild.txt
+END
+novending.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/novending.txt
+END
+town.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/town.txt
+END
+noexp.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noexp.txt
+END
+nomemo.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nomemo.txt
+END
+nobranch.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/nobranch.txt
+END
+battleground.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/battleground.txt
+END
+noteleport.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/noteleport.txt
+END
+nosave.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/brAthena/brAthena/!svn/ver/161/trunk/npc/mapflag/nosave.txt
+END
+skillmodifier.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/skillmodifier.txt
+END
+notomb.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/brAthena/brAthena/!svn/ver/1/trunk/npc/mapflag/notomb.txt
+END

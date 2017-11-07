@@ -1,0 +1,74 @@
+prontera,164,172,4	script	Anúncio	867,{
+
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Olá, ^0000FF"+strcharinfo(0)+"^000000. Deseja Anunciar?";
+next;
+menu "- Sim",Sim,"- Não",Nao,"- Cancelar",Cancel;
+ 
+Sim:
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Escolha a cor que deseja:";
+menu "- Vermelho",Verme,"- Branco",Branco,"- Amarelo",Yellow,"- Azul",Blue,"- Verde",Green,"- Roxo",Roxo,"- Cinza",Cinza;
+ 
+Nao:
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Volte quando quiser";
+close;
+ 
+Verme:
+input @mensagem$;
+announce ""+strcharinfo(0)+": "+@mensagem$+" ",bc,0xD20000;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Branco:
+input @mensagem1$;
+announce ""+strcharinfo(O)+": "+@mensagem1$+" ",bc,0x000000;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Yellow:
+input @mensagem2$;
+announce ""+strcharinfo(0)+": "+@mensagem2$+" ",bc_yellow;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Blue:
+input @mensagem3$;
+announce ""+strcharinfo(0)+": "+@mensagem3$+" ",bc_blue;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Green:
+input @mensagem4$;
+announce ""+strcharinfo(O)+": "+@mensagem4$+" ",bc,0x99CC00;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Roxo:
+input @mensagem5$;
+announce ""+strcharinfo(O)+": "+@mensagem5$+" ",bc,0xCC00FF;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+Cinza:
+input @mensagem6$;
+announce ""+strcharinfo(O)+": "+@mensagem6$+" ",bc,0xBAB9B9;
+mes "[^FF0000 Anunciadora ^000000]";
+mes "Mensagem Enviada Com Sucesso";
+close;
+ 
+L_faltadimdim:
+mes "[^FF0000 Anunciadora ^000000]";
+close;
+ 
+Cancel:
+close;
+ 
+}

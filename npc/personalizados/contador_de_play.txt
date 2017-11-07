@@ -1,0 +1,56 @@
+//////////////////////////////////////////////////////////////////////////////////////////////
+//                      Todos os Direitos Autorais deverão ser preservados.                 //
+//                              All Copyrights should be preserved.                         //
+//                                                                                          //  
+// ///////////  ///      //////     ///  ////   //////// ///////////  ////////   ////////// //
+//    ////       ///    /// ///    ///   ////  ////         ////      ////       ////   /// //
+//    ////        ///   ///  ///   ///   ////    ////       ////      ///////    ////////// //
+//    ////         /// ///    /// ///    ////      ////     ////      ////       //// ///   //
+//    /T//          /W//       ////      //I/  //S////      /T//      ///E////   /R//   /// //
+//                                                                                          //
+//                 Este código foi desenvolvido por: Twister (Ian Rotondo Bagliotti).       //   
+//                   This code was developed by: Twister (Ian Rotondo Bagliotti).           //
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+prontera,155,196,4	script	Velho Contador	963,{
+
+        set .nome$,"^FF8C00Velho Contador: ^000000";
+
+
+        query_sql "SELECT COUNT(*) FROM `char` WHERE `online` = 1",.atl;
+
+        mes .nome$;
+        mes "Belo dia não ^00BFFF"+strcharinfo(0)+"^000000?";
+        mes "Eu sou um Velho Contador aposentado responsável por contar a maior quantidade jogadores simultaneos que passaram por aqui...";
+        next;
+        mes .nome$;
+        mes "Gostaria de ver a contagem atual? ";
+        switch (select("Sim, eu desejo!:Saia daqui seu velho babaca!")){
+                case 1:
+                next;
+                mes .nome$;
+                mes "Atualmente tem ^00BFFF"+.atl+"^000000 jogadores online!";
+                mes "";
+                mes "E o record atual é de: ^00BFFF"+$Onlinefld+"^000000 jogadores";
+                close;
+                case 2:
+                next;
+                mes .nome$;
+                mes "Maass..... quanta grosseria!!!";
+                emotion 23;
+                close;
+        }
+
+        OnPCLoginEvent:
+        query_sql "SELECT COUNT(*)FROM `char` Where `online`=1",.@e;
+        if(.@e > $Onlinefld)
+        {
+                announce "Velho Contador:  O recorde de [ "+$Onlinefld+" ] jogadores online foi batido.",bc_all;
+                sleep 5000;
+                set $Onlinefld, .@e;
+                announce "Velho Contador: Novo recorde é de [ "+$Onlinefld+" ] jogadores no momento.",bc_all;
+                delwaitingroom "Recorde";
+                waitingroom "["+$Onlinefld+"] Recorde Online ",0;
+        }
+        end;
+}

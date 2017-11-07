@@ -1,0 +1,15 @@
+prontera,164,167,4	script	Informações	857,{
+
+    OnPCLoginEvent:
+cutin "bat_kiyom1",2;
+    set @npcname$,"^336699[Bem Vindo ao RagnaPlay]^000000";
+    set @servername$,"RagnaPlay";	
+    mes @npcname$;
+    mes "^FF0000Site:^000000ragnaplay.com.br";
+    mes "^FF0000Doação:^000000No momento pelo PagSeguro";
+    mes "^FF0000Promoção:^000000Doe, valores acima de R$ 25,00 Ganhe 100% do valor";
+cutin "",255;
+    close;
+
+
+}
