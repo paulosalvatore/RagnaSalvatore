@@ -17,47 +17,61 @@
 //============================================================
 
 -	script	Warper	-1,{
-function Go; function Disp; function Pick; function Restrict;
+	function Go;
+	function Disp;
+	function Pick;
+	function Restrict;
 
 // --------------------------------------------------
 //	Main Menu:
 // --------------------------------------------------
 
-menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
-		" ~ Towns",Towns,
-		" ~ Fields",Fields,
-		" ~ Dungeons",Dungeons,
-		" ~ Guild Castles",Castles,
-		" ~ Guild Dungeons",Guild_Dungeons,
-		" ~ Instances",Instances,
-		" ~ Special Areas",Special;
+mes "[Teletransportadora]";
+mes "Para onde deseja ir?";
+
+menu	"Último Local ^777777["+lastwarp$+"]^000000",-,
+		" ~ Cidades",Cidades,
+		" ~ Campos",Campos,
+		" ~ Calabouços",Calaboucos,
+		" ~ Castelos das Guildas",Castelos,
+		" ~ Calabouços das Guildas",Cavernas_Guildas,
+		" ~ Instâncias",Instancias;
+		//" ~ Áreas Especiais",Especial;
 
 	if (lastwarp$ == "")
-		message strcharinfo(0),"You haven't warped anywhere yet.";
+	{
+		message strcharinfo(0),"Você ainda não utilizou nossos serviços.";
+		close;
+	}
 	else
+	{
 		warp lastwarp$,lastwarpx,lastwarpy;
-	end;
+		end;
+	}
 
 // ------------------- Functions -------------------
 // * Go("<map>",<x>,<y>);
-//	~ Warps directly to a map.
+//	~ Teleporta diretamente para um mapa.
 //
 // * Disp("<Menu Option>",<first option>,<last option>);
+
 // * Pick("<map_prefix>"{,<index offset>});
-//	~ Dynamic menu and map selection (auto-numbered).
+//	~ Seleção Dinâmica de Mapas e Menus (auto-numerada).
 //
 // * Disp("<Option 1>:<Option 2>:<etc.>");
+
 // * Pick("","<map1>","<map2>","<etc.>");
-//	~ Manual menu and map selection (listed).
+//	~ Seleção Manual de mapa e menu(listados).
 //
 // * Restrict("<RE | Pre-RE>"{,<menu option numbers>});
-//	~ Only allows map for Renewal or Pre-Renewal modes.
-//     If menu option numbers are given, only those maps
-//     will be restricted (i.e. not for "Go").
+//	~ Somente libera o mapa para os modos Renewal ou Pre-Renewal.
+//     Se os números de opção do menu foram dados, somente esses mapas
+//     serão restringidos (i.e. não para "Go").
 //
+
 // Other notes:
-//   ~ Array @c[] holds all (x,y) coordinates.
-//   ~ Use @c[2] EXCEPT when maps begin dynamically
+//   ~ Array @c[] guarda todas coordenadas (x,y).
+//   ~ Use @c[2] EXCETO quando os mapas iniciarem dinamicamente
 //	  at 0: use @c[0] and Pick() offset 1.
 // --------------------------------------------------
 
@@ -68,6 +82,7 @@ function Go {
 	warp getarg(0),getarg(1,0),getarg(2,0);
 	end;
 }
+
 function Disp {
 	if (getargcount() < 3)
 		@menu$ = getarg(0);
@@ -76,12 +91,15 @@ function Disp {
 		for (.@i = getarg(1); .@i <= getarg(2); .@i++)
 			@menu$ = @menu$+getarg(0)+" "+.@i+":";
 	}
+	
 	return;
 }
+
 function Pick {
 	.@warp_block = @warp_block;
 	@warp_block = 0;
 	.@select = select(@menu$);
+
 	if (getarg(0) == "") {
 		.@i = .@select;
 		.@map$ = getarg(.@i);
@@ -89,15 +107,18 @@ function Pick {
 		.@i = .@select-getarg(1,0);
 		.@map$ = getarg(0)+((.@i<10)?"0":"")+.@i;
 	}
+
 	if (.@warp_block & (1<<.@select)) {
-		message strcharinfo(0),"This map is not enabled in "+(RENEWAL?"":"Pre-")+"Renewal.";
+		message strcharinfo(0),"Este mapa não está habilitado no "+(RENEWAL?"":"Pre-")+"Renewal.";
 		end;
 	}
+
 	.@x = @c[.@i*2];
 	.@y = @c[.@i*2+1];
 	deletearray @c[0],getarraysize(@c);
 	Go(.@map$,.@x,.@y);
 }
+
 function Restrict {
 	if ((getarg(0) == "RE" && !RENEWAL) || (getarg(0) == "Pre-RE" && RENEWAL)) {
 		if (getarg(1,0)) {
@@ -105,41 +126,69 @@ function Restrict {
 			for (.@i = 1; .@i < getargcount(); .@i++)
 				@warp_block = @warp_block | (1<<getarg(.@i));
 		} else {
-			message strcharinfo(0),"This map is not enabled in "+(RENEWAL?"":"Pre-")+"Renewal.";
+			message strcharinfo(0),"Este mapa não está habilitado no "+(RENEWAL?"":"Pre-")+"Renewal.";
 			end;
 		}
 	}
+
 	return;
 }
 
 // --------------------------------------------------
-	Towns:
+	Cidades:
 // --------------------------------------------------
-menu	"Prontera",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
-		"Brasilis",T6, "Comodo",T7, "Dewata",T8, "Eclage",T9, "Einbech",T10,
-		"Einbroch",T11, "El Dicastes",T12, "Geffen",T13, "Gonryun",T14, "Hugel",T15,
-		"Izlude",T16, "Jawaii",T17, "Lighthalzen",T18, "Louyang",T19, "Lutie",T20,
-		"Malangdo",T21, "Malaya",T22, "Manuk",T23, "Midgarts Expedition Camp",T24,
-		"Mora",T25, "Morroc",T26, "Moscovia",T27, "Nameless Island",T28,
-		"Niflheim",T29, "Payon",T30, "Rachel",T31, "Splendide",T32, "Thor Camp",T33,
-		"Umbala",T34, "Veins",T35, "Yuno",T36;
+menu	"Prontera",T1,
+		"Alberta",T2,
+		"Aldebaran",T3,
+		"Amatsu",T4,
+		"Ayothaya",T5,
+		"Brasilis",T6,
+		"Comodo",T7,
+		//"Dewata",T8,
+		//"Eclage",T9,
+		"Einbech",T10,
+		"Einbroch",T11,
+		//"El Dicastes",T12,
+		"Geffen",T13,
+		"Kunlun",T14,
+		"Hugel",T15,
+		"Izlude",T16,
+		"Jawaii",T17,
+		"Lighthalzen",T18,
+		"Louyang",T19,
+		"Lutie",T20,
+		//"Malangdo",T21,
+		//"Malaya",T22,
+		"Manuka",T23,
+		"Campo de Expedição de Midgarts",T24,
+		//"Mora",T25,
+		"Morroc",T26,
+		"Moscovia",T27,
+		"Ilha Esquecida",T28,
+		"Niflheim",T29,
+		"Payon",T30,
+		"Rachel",T31,
+		"Esplendor",T32,
+		"Acampamento de Thor",T33,
+		"Umbala",T34,
+		"Veins",T35,
+		"Juno",T36;
 
 T1: Go("prontera",155,183);
 T2: Go("alberta",28,234);
 T3: Go("aldebaran",140,131);
 T4: Go("amatsu",198,84);
 T5: Go("ayothaya",208,166);
-T6: Restrict("RE");
-	Go("brasilis",196,217);
+T6: Go("brasilis",196,217);
 T7: Go("comodo",209,143);
-T8: Restrict("RE");
-	Go("dewata",200,180);
-T9: Restrict("RE");
-	Go("ecl_in01",48,53);
+//T8: Restrict("RE");
+//	Go("dewata",200,180);
+//T9: Restrict("RE");
+//	Go("ecl_in01",48,53);
 T10: Go("einbech",63,35);
 T11: Go("einbroch",64,200);
-T12: Restrict("RE");
-	 Go("dicastes01",198,187);
+//T12: Restrict("RE");
+//	 Go("dicastes01",198,187);
 T13: Go("geffen",119,59);
 T14: Go("gonryun",160,120);
 T15: Go("hugel",96,145);
@@ -148,14 +197,14 @@ T17: Go("jawaii",251,132);
 T18: Go("lighthalzen",158,92);
 T19: Go("louyang",217,100);
 T20: Go("xmas",147,134);
-T21: Restrict("RE");
-	 Go("malangdo",140,114);
-T22: Restrict("RE");
-	 Go("malaya",231,200);
+//T21: Restrict("RE");
+//	 Go("malangdo",140,114);
+//T22: Restrict("RE");
+//	 Go("malaya",231,200);
 T23: Go("manuk",282,138);
 T24: Go("mid_camp",210,288);
-T25: Restrict("RE");
-	 Go("mora",55,146);
+//T25: Restrict("RE");
+//	 Go("mora",55,146);
 T26: Go("morocc",156,93);
 T27: Go("moscovia",223,184);
 T28: Go("nameless_n",256,215);
@@ -169,44 +218,61 @@ T35: Go("veins",216,123);
 T36: Go("yuno",157,51);
 
 // --------------------------------------------------
-	Fields:
+	Campos:
 // --------------------------------------------------
-menu	"Amatsu Fields",F1, "Ayothaya Fields",F2, "Bifrost Fields", F3,
-		"Brasilis Fields",F4, "Comodo Fields",F5, "Dewata Fields",F6,
-		"Eclage Fields",F7, "Einbroch Fields",F8, "El Dicastes Fields",F9,
-		"Geffen Fields",F10, "Gonryun Fields",F11, "Hugel Fields",F12,
-		"Lighthalzen Fields",F13, "Louyang Field",F14, "Lutie Field",F15,
-		"Malaya Fields",F16, "Manuk Fields",F17, "Mjolnir Fields",F18,
-		"Moscovia Fields",F19, "Niflheim Fields",F20, "Payon Forests",F21,
-		"Prontera Fields",F22, "Rachel Fields",F23, "Sograt Deserts",F24,
-		"Splendide Fields",F25, "Umbala Fields",F26, "Veins Fields",F27,
-		"Yuno Fields",F28;
+menu	"Campos de Amatsu",F1,
+		"Campos de Ayothaya",F2,
+		//"Bifrost Fields", F3,
+		"Campos de Brasilis",F4,
+		"Campos de Comodo",F5,
+		//"Dewata Fields",F6,
+		//"Eclage Fields",F7,
+		"Campos de Einbroch",F8,
+		//"El Dicastes Fields",F9,
+		"Campos de Geffen",F10,
+		"Campos de Kunlun",F11,
+		"Campos de Hugel",F12,
+		"Campos de Lighthalzen",F13,
+		"Campos de Louyang",F14,
+		"Campos de Lutie",F15,
+		//"Malaya Fields",F16,
+		"Montanhas dos Manuke",F17,
+		"Campos de Mjolnir",F18,
+		"Campos de Moscovia",F19,
+		"Campos de Niflheim",F20,
+		"Floresta de Payon",F21,
+		"Campos de Prontera",F22,
+		"Campos de Rachel",F23,
+		"Deserto de Sograt",F24,
+		"Campos dos Esplendores",F25,
+		"Campos de Umbala",F26,
+		"Campos de Veins",F27,
+		"Campos de Juno",F28;
 
 F1: setarray @c[2],190,197;
 	Disp("Amatsu Field",1,1); Pick("ama_fild");
 F2: setarray @c[2],173,134,212,150;
 	Disp("Ayothaya Field",1,2); Pick("ayo_fild");
-F3: Restrict("RE");
-	setarray @c[2],193,220,220,187;
-	Disp("Bifrost Field",1,2); Pick("bif_fild");
-F4: Restrict("RE");
-	setarray @c[2],74,32;
+//F3: Restrict("RE");
+//	setarray @c[2],193,220,220,187;
+//	Disp("Bifrost Field",1,2); Pick("bif_fild");
+F4: setarray @c[2],74,32;
 	Disp("Brasilis Field",1,1); Pick("bra_fild");
 F5: Restrict("Pre-RE",5);
 	setarray @c[2],180,178,231,160,191,172,228,194,224,203,190,223,234,177,194,175,172,172;
 	Disp("Comodo Field",1,9); Pick("cmd_fild");
-F6: Restrict("RE");
-	setarray @c[2],371,212;
-	Disp("Dewata Field",1,1); Pick("dew_fild");
-F7: Restrict("RE");
-	setarray @c[2],97,314;
-	Disp("Eclage Field",1,1); Pick("ecl_fild");
+//F6: Restrict("RE");
+//	setarray @c[2],371,212;
+//	Disp("Dewata Field",1,1); Pick("dew_fild");
+//F7: Restrict("RE");
+//	setarray @c[2],97,314;
+//	Disp("Eclage Field",1,1); Pick("ecl_fild");
 F8: Restrict("Pre-RE",2,10);
 	setarray @c[2],142,225,182,141,187,228,185,173,216,173,195,148,272,220,173,214,207,174,196,200;
 	Disp("Einbroch Field",1,10); Pick("ein_fild");
-F9: Restrict("RE");
-	setarray @c[2],143,132,143,217;
-	Disp("El Dicastes Field",1,2); Pick("dic_fild");
+//F9: Restrict("RE");
+//	setarray @c[2],143,132,143,217;
+//	Disp("El Dicastes Field",1,2); Pick("dic_fild");
 F10: Restrict("Pre-RE",13,15);
 	 setarray @c[0],46,199,213,204,195,212,257,192,188,171,166,263,248,158,195,191,186,183,221,117,178,218,136,328,240,181,235,235,211,185;
 	 Disp("Geffen Field",0,14); Pick("gef_fild",1);
@@ -221,9 +287,9 @@ F14: setarray @c[2],229,187;
 	 Disp("Louyang Field",1,1); Pick("lou_fild");
 F15: setarray @c[2],115,145;
 	 Disp("Lutie Field",1,1); Pick("xmas_fild");
-F16: Restrict("RE");
-	 setarray @c[2],40,272,207,180;
-	 Disp("Malaya Field",1,2); Pick("ma_fild");
+//F16: Restrict("RE");
+//	 setarray @c[2],40,272,207,180;
+//	 Disp("Malaya Field",1,2); Pick("ma_fild");
 F17: setarray @c[2],35,236,35,262,84,365;
 	 Disp("Manuk Field",1,3); Pick("man_fild");
 F18: setarray @c[2],204,120,175,193,208,213,179,180,181,240,195,270,235,202,188,215,205,144,245,223,180,206,196,208;
@@ -255,20 +321,49 @@ F28: Restrict("Pre-RE",5,10);
 	 Disp("Yuno Field",1,12); Pick("yuno_fild");
 
 // --------------------------------------------------
-	Dungeons:
+	Calaboucos:
 // --------------------------------------------------
-menu	"Abyss Lakes",D1, "Amatsu Dungeon",D2, "Anthell",D3,
-		"Ayothaya Dungeon",D4, "Beach Dungeon",D5, "Bifrost Tower",D41,
-		"Bio Labs",D6, "Brasilis Dungeon",D7, "Byalan Dungeon",D8, "Clock Tower",D9,
-		"Coal Mines",D10, "Culvert",D11, "Cursed Abbey",D12, "Dewata Dungeon",D13,
-		"Einbroch Dungeon",D14, "Gefenia",D15, "Geffen Dungeon",D16,
-		"Glast Heim",D17, "Gonryun Dungeon",D18, "Hidden Dungeon",D19,
-		"Ice Dungeon",D20, "Juperos",D21, "Kiel Dungeon",D22, "Louyang Dungeon",D23,
-		"Magma Dungeon",D24, "Malangdo Dungeon",D25, "Moscovia Dungeon",D26,
-		"Nidhogg's Dungeon",D27, "Odin Temple",D28, "Orc Dungeon",D29,
-		"Payon Dungeon",D30, "Pyramids",D31, "Rachel Sanctuary",D32,
-		"Scaraba Hole",D33, "Sphinx",D34, "Sunken Ship",D35, "Thanatos Tower",D36,
-		"Thor Volcano",D37, "Toy Factory",D38, "Turtle Dungeon",D39, "Umbala Dungeon",D40;
+menu	"Lago do Abismo",D1,
+		"Labirinto de Tatames",D2,
+		"Formigueiro Infernal",D3,
+		"Labirinto do Santuário Ancestral",D4,
+		"Karu: A Caverna do Oeste",D5,
+		"Biolaboratório de Somatologia",D6,
+		"Calabouço das Cataratas",D7,
+		"Túnel Submarino",D8,
+		"Torre do Relógio",D9,
+		"Mina Abandonada de Mjolnir",D10,
+		"Esgoto de Prontera",D11,
+		"Monastério",D12,
+		//"Dewata Dungeon",D13,
+		"Calabouço da Mina",D14,
+		"Gefenia",D15,
+		"Calabouço de Geffen",D16,
+		"Glast Heim",D17,
+		"Santuário de Xi Wang Mu",D18,
+		"Labirinto da Floresta",D19,
+		"Caverna de Gelo",D20,
+		"Ruínas de Juperos",D21,
+		"Fábrica de Robôs",D22,
+		"A Tumba Real",D23,
+		"Calabouço de Magma",D24,
+		//"Malangdo Dungeon",D25,
+		"Floresta Encantada",D26,
+		"A Grande Ferida",D27,
+		"Santuário de Odin",D28,
+		"Calabouço dos Orcs",D29,
+		"Caverna de Payon",D30,
+		"Pirâmide",D31,
+		"Santuário de Rachel",D32,
+		//"Scarab Hole",D33,
+		"Esfinge",D34,
+		"Navio Fantasma",D35,
+		"Torre de Thanatos",D36,
+		"Vulcão de Thor",D37,
+		"Fábrica de Brinquedos",D38,
+		"Ilha da Tartaruga",D39,
+		"Calabouço de Umbala",D40;
+		//"Bifrost Tower",D41,
 
 D1: setarray @c[2],261,272,275,270,116,27;
 	Disp("Abyss Lakes",1,3); Pick("abyss_");
@@ -280,15 +375,15 @@ D4: setarray @c[2],275,19,24,26;
 	Disp("Ancient Shrine Maze:Inside Ancient Shrine"); Pick("ayo_dun");
 D5: setarray @c[2],266,67,255,244,23,260;
 	Disp("Beach Dungeon",1,3); Pick("","beach_dun","beach_dun2","beach_dun3");
-D6: Restrict("RE",4);
-	setarray @c[2],150,288,150,18,140,134,244,52;
-	Disp("Bio Lab",1,4); Pick("lhz_dun");
+D6: //Restrict("RE",4);,244,52
+	setarray @c[2],150,288,150,18,140,134;
+	Disp("Bio Lab",1,3); Pick("lhz_dun");
 D7: Restrict("RE");
 	setarray @c[2],87,47,262,262;
 	Disp("Brasilis Dungeon",1,2); Pick("bra_dun");
-D8: Restrict("RE",6);
-	setarray @c[0],168,168,253,252,236,204,32,63,26,27,141,187;
-	Disp("Byalan Dungeon",1,6); Pick("iz_dun",1);
+D8: //Restrict("RE",6);,141,187
+	setarray @c[0],168,168,253,252,236,204,32,63,26,27;
+	Disp("Byalan Dungeon",1,5); Pick("iz_dun",1);
 D9: setarray @c[2],199,159,148,283,65,147,56,155,297,25,127,169,277,178,268,74;
 	Disp("Clock Tower 1:Clock Tower 2:Clock Tower 3:Clock Tower 4:Basement 1:Basement 2:Basement 3:Basement 4");
 	Pick("","c_tower1","c_tower2","c_tower3","c_tower4","alde_dun01","alde_dun02","alde_dun03","alde_dun04");
@@ -298,9 +393,9 @@ D11: setarray @c[2],131,247,19,19,180,169,100,92;
 	 Disp("Culvert",1,4); Pick("","prt_sewb1","prt_sewb2","prt_sewb3","prt_sewb4");
 D12: setarray @c[2],51,14,150,11,120,10;
 	 Disp("Cursed Abbey",1,3); Pick("abbey");
-D13: Restrict("RE");
-	 setarray @c[2],285,160,299,29;
-	 Disp("Dewata Dungeon",1,2); Pick("dew_dun");
+//D13: Restrict("RE");
+//	 setarray @c[2],285,160,299,29;
+//	 Disp("Dewata Dungeon",1,2); Pick("dew_dun");
 D14: setarray @c[2],22,14,292,290;
 	 Disp("Einbroch Dungeon",1,2); Pick("ein_dun");
 D15: setarray @c[2],40,103,203,34,266,168,130,272;
@@ -325,9 +420,9 @@ D23: setarray @c[2],218,196,282,20,165,38;
 	 Disp("The Royal Tomb:Inside the Royal Tomb:Suei Long Gon"); Pick("lou_dun");
 D24: setarray @c[2],126,68,47,30;
 	 Disp("Magma Dungeon",1,2); Pick("mag_dun");
-D25: Restrict("RE");
-	 setarray @c[2],33,230;
-	 Disp("Malangdo Dungeon",1,1); Pick("mal_dun");
+//D25: Restrict("RE");
+//	 setarray @c[2],33,230;
+//	 Disp("Malangdo Dungeon",1,1); Pick("mal_dun");
 D26: setarray @c[2],189,48,165,30,32,135;
 	 Disp("Moscovia Dungeon",1,3); Pick("mosk_dun");
 D27: setarray @c[2],61,239,60,271;
@@ -344,9 +439,9 @@ D31: Restrict("RE",7,8);
 	 Pick("","moc_pryd01","moc_pryd02","moc_pryd03","moc_pryd04","moc_pryd05","moc_pryd06","moc_prydn1","moc_prydn2");
 D32: setarray @c[2],140,11,32,21,8,149,204,218,150,9;
 	 Disp("Rachel Sanctuary",1,5); Pick("ra_san");
-D33: Restrict("RE");
-	 setarray @c[2],364,44,101,141;
-	 Disp("Scaraba Hole",1,2); Pick("dic_dun");
+//D33: Restrict("RE");
+//	 setarray @c[2],364,44,101,141;
+//	 Disp("Scaraba Hole",1,2); Pick("dic_dun");
 D34: setarray @c[2],288,9,149,81,210,54,10,222,100,99;
 	 Disp("Sphinx",1,5); Pick("","in_sphinx1","in_sphinx2","in_sphinx3","in_sphinx4","in_sphinx5");
 D35: setarray @c[2],69,24,102,27;
@@ -363,15 +458,19 @@ D40: Restrict("Pre-RE",1,2);
 	 setarray @c[2],42,31,48,30,204,78;
 	 Disp("Carpenter's Shop in the Tree:Passage to a Foreign World:Hvergermil's Fountain");
 	 Pick("","um_dun01","um_dun02","yggdrasil01");
-D41: Restrict("RE");
-	 setarray @c[2],57,13,64,88,45,14,26,23;
-	 Disp("Bifrost Tower",1,4); Pick("ecl_tdun");
+//D41: Restrict("RE");
+//	 setarray @c[2],57,13,64,88,45,14,26,23;
+//	 Disp("Bifrost Tower",1,4); Pick("ecl_tdun");
 
 // --------------------------------------------------
-	Castles:
+	Castelos:
 // --------------------------------------------------
-menu	"Aldebaran Castles",C1, "Geffen Castles",C2, "Payon Castles",C3,
-		"Prontera Castles",C4, "Arunafeltz Castles",C5, "Schwaltzvalt Castles",C6;
+menu	"Castelos de Aldebaran",C1,
+		"Castelos de Geffen",C2,
+		"Castelos de Payon",C3,
+		"Castelos de Prontera",C4,
+		"Castelos de Arunafeltz",C5,
+		"Castelos de Schwaltzvalt",C6;
 
 C1: setarray @c[2],48,83,95,249,142,85,239,242,264,90;
 	Disp("Neuschwanstein:Hohenschwangau:Nuenberg:Wuerzburg:Rothenburg");
@@ -393,64 +492,87 @@ C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
 	Pick("","sch_gld","sch_gld","sch_gld","sch_gld","sch_gld");
 
 // --------------------------------------------------
-	Guild_Dungeons:
+	Cavernas_Guildas:
 // --------------------------------------------------
-menu	"Baldur",G1, "Luina",G2, "Valkyrie",G3, "Britoniah",G4,
-		"Arunafeltz",G5, "Schwaltzvalt",G6;
+menu	"Baldur",G1,
+		"Luina",G2,
+		"Valkyrie",G3,
+		"Britoniah",G4,
+		"Arunafeltz",G5,
+		"Schwaltzvalt",G6;
 
-G1: Restrict("RE",2,3);
-	setarray @c[2],119,93,119,93,120,130;
-	Disp("Baldur F1:Baldur F2:Hall of Abyss");
-	Pick("","gld_dun01","gld_dun01_2","gld2_pay");
-G2: Restrict("RE",2,3);
-	setarray @c[2],39,161,39,161,147,155;
-	Disp("Luina F1:Luina F2:Hall of Abyss");
-	Pick("","gld_dun02","gld_dun02_2","gld2_ald");
-G3: Restrict("RE",2,3);
-	setarray @c[2],50,44,50,44,140,132;
-	Disp("Valkyrie F1:Valkyrie F2:Hall of Abyss");
-	Pick("","gld_dun03","gld_dun03_2","gld2_prt");
-G4: Restrict("RE",2,3);
-	setarray @c[2],116,45,116,45,152,118;
-	Disp("Britoniah F1:Britoniah F2:Hall of Abyss");
-	Pick("","gld_dun04","gld_dun04_2","gld2_gef");
+G1: Go("gld_dun01",119,93);
+	//Restrict("RE",2,3);
+	//setarray @c[2],119,93,119,93,120,130;
+	//Disp("Baldur F1:Baldur F2:Hall of Abyss");
+	//Pick("","gld_dun01","gld_dun01_2","gld2_pay");
+G2: Go("gld_dun02",39,161);
+	//Restrict("RE",2,3);
+	//setarray @c[2],39,161,39,161,147,155;
+	//Disp("Luina F1:Luina F2:Hall of Abyss");
+	//Pick("","gld_dun02","gld_dun02_2","gld2_ald");
+G3: Go("gld_dun03",50,44);
+	//Restrict("RE",2,3);
+	//setarray @c[2],50,44,50,44,140,132;
+	//Disp("Valkyrie F1:Valkyrie F2:Hall of Abyss");
+	//Pick("","gld_dun03","gld_dun03_2","gld2_prt");
+G4: Go("gld_dun04",116,45);
+	//Restrict("RE",2,3);
+	//setarray @c[2],116,45,116,45,152,118;
+	//Disp("Britoniah F1:Britoniah F2:Hall of Abyss");
+	//Pick("","gld_dun04","gld_dun04_2","gld2_gef");
 G5: Go("arug_dun01",199,195);
 G6: Go("schg_dun01",200,124);
 
 // --------------------------------------------------
-	Instances:
+	Instancias:
 // --------------------------------------------------
-menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
-		"Endless Tower",I4, "Hazy Forest",I5, "Malangdo Culvert",I6, "Nidhoggur's Nest",I7,
-		"Octopus Cave",I8, "Old Glast Heim",I9, "Orc's Memory",I10, "Sealed Shrine",I11,
-		"Wolfchev's Laboratory",I12;
+menu	//"Bakonawa Lake",I1,
+		//"Bangungot Hospital 2F",I2,
+		//"Buwaya Cave",I3,
+		"Endless Tower",I4,
+		//"Hazy Forest",I5,
+		//"Malangdo Culvert",I6,
+		"Nidhoggur's Nest",I7,
+		//"Octopus Cave",I8,
+		//"Old Glast Heim",I9,
+		"Orc's Memory",I10,
+		"Sealed Shrine",I11;
+		//"Wolfchev's Laboratory",I12;
 
-I1: Restrict("RE");
-	Go("ma_scene01",172,175);
-I2: Restrict("RE");
-	Go("ma_dun01",151,8);
-I3: Restrict("RE");
-	Go("ma_fild02",316,317);
+//I1: Restrict("RE");
+//	Go("ma_scene01",172,175);
+//I2: Restrict("RE");
+//	Go("ma_dun01",151,8);
+//I3: Restrict("RE");
+//	Go("ma_fild02",316,317);
 I4: Go("e_tower",72,112);
-I5: Restrict("RE");
-	Go("bif_fild01",161,334);
-I6: Restrict("RE");
-	Go("mal_in01",164,21);
+//I5: Restrict("RE");
+//	Go("bif_fild01",161,334);
+//I6: Restrict("RE");
+//	Go("mal_in01",164,21);
 I7: Go("nyd_dun02",95,193);
-I8: Restrict("RE");
-	Go("mal_dun01",152,230);
-I9: Restrict("RE");
-	Go("glast_01",204,268);
+//I8: Restrict("RE");
+//	Go("mal_dun01",152,230);
+//I9: Restrict("RE");
+//	Go("glast_01",204,268);
 I10: Go("gef_fild10",240,198);
 I11: Go("monk_test",306,143);
-I12: Restrict("RE");
-	Go("lhz_dun04",148,269);
+//I12: Restrict("RE");
+//	Go("lhz_dun04",148,269);
 
 // --------------------------------------------------
-	Special:
+/*	Especiais:
 // --------------------------------------------------
-menu	"Auction Hall",S1, "Battlegrounds",S2, "Casino",S3, "Eden Group Headquarters",S4,
-		"Gonryun Arena",S5, "Izlude Arena",S6, "Monster Race Arena",S7, "Turbo Track",S8;
+
+menu	"Sala de Leilão",S1,
+		"Batalha Campal",S2,
+		"Cassino",S3,
+		"Eden Group Headquarters",S4,
+		"Salão de Batalhas",S5,
+		"Izlude Arena",S6,
+		"Monster Race Arena",S7,
+		"Turbo Track",S8;
 
 S1: Go("auction_01",22,68);
 S2: Go("bat_room",154,150);
@@ -461,11 +583,13 @@ S5: Go("gon_test",48,10);
 S6: Go("arena_room",100,88);
 S7: Go("p_track01",62,41);
 S8: Go("turbo_room",99,114);
+*/
 }
 
 // --------------------------------------------------
 //	Duplicates:
 // --------------------------------------------------
+
 alb2trea,57,70,6	duplicate(Warper)	Warper#tre	4_F_VALKYRIE
 alberta,28,240,4	duplicate(Warper)	Warper#alb	4_F_VALKYRIE
 aldebaran,145,118,4	duplicate(Warper)	Warper#alde	4_F_VALKYRIE
@@ -480,7 +604,8 @@ glast_01,372,308,4	duplicate(Warper)	Warper#glh	4_F_VALKYRIE
 gonryun,162,122,4	duplicate(Warper)	Warper#gon	4_F_VALKYRIE
 hugel,101,151,4	duplicate(Warper)	Warper#hug	4_F_VALKYRIE
 izlu2dun,110,92,4	duplicate(Warper)	Warper#izd	4_F_VALKYRIE
-izlude,134,150,4	duplicate(Warper)	Warper#izl	4_F_VALKYRIE	//Pre-RE: (132,120)
+izlude,134,150,4	duplicate(Warper)	Warper#izl	4_F_VALKYRIE
+//Pre-RE: (132,120)
 jawaii,253,138,4	duplicate(Warper)	Warper#jaw	4_F_VALKYRIE
 lighthalzen,162,102,4	duplicate(Warper)	Warper#lhz	4_F_VALKYRIE
 louyang,208,103,6	duplicate(Warper)	Warper#lou	4_F_VALKYRIE
@@ -504,13 +629,15 @@ veins,214,123,4	duplicate(Warper)	Warper#ve	4_F_VALKYRIE
 xmas,150,136,6	duplicate(Warper)	Warper#xmas	4_F_VALKYRIE
 yuno,162,47,4	duplicate(Warper)	Warper#yuno	4_F_VALKYRIE
 
+
 // --------------------------------------------------
 //	Duplicates (Renewal):
 // --------------------------------------------------
-brasilis,201,222,4	duplicate(Warper)	Warper#bra	4_F_VALKYRIE
-dewata,204,186,6	duplicate(Warper)	Warper#dew	4_F_VALKYRIE
-dicastes01,194,194,6	duplicate(Warper)	Warper#dic	4_F_VALKYRIE
-ecl_in01,51,60,4	duplicate(Warper)	Warper#ecl	4_F_VALKYRIE
-malangdo,134,117,6	duplicate(Warper)	Warper#mal	4_F_VALKYRIE
-malaya,231,204,4	duplicate(Warper)	Warper#ma	4_F_VALKYRIE
-mora,57,152,4	duplicate(Warper)	Warper#mora	4_F_VALKYRIE
+
+brasilis,201,222,4		duplicate(Warper)	Warper#bra		4_F_VALKYRIE
+//dewata,204,186,6		duplicate(Warper)	Warper#dew		4_F_VALKYRIE
+//dicastes01,194,194,6	duplicate(Warper)	Warper#dic		4_F_VALKYRIE
+//ecl_in01,51,60,4		duplicate(Warper)	Warper#ecl		4_F_VALKYRIE
+//malangdo,134,117,6	duplicate(Warper)	Warper#mal		4_F_VALKYRIE
+//malaya,231,204,4		duplicate(Warper)	Warper#ma		4_F_VALKYRIE
+//mora,57,152,4			duplicate(Warper)	Warper#mora		4_F_VALKYRIE
