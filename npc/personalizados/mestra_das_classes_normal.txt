@@ -1,9 +1,9 @@
-prontera,151,190,4	script	Mestra Das Classes::jobmasterf	811,{
+prontera,151,190,4	script	Mestra Das Classes::jobmasterf	2_F_MAGICMASTER,{
 //Mestra VIP INICIO
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
-mes "[Valquiria]";
+mes "[Mestra das Classes]";
 //Classes em seu estado Final:
 if(Class == 23 || Class == 24 || Class == 25 || Class == 4047 || Class == 4049)
 		{mes "Você já está no seu Mais Alto Grau de sua Proffisão.";	close2; cutin "", 255; end;}
@@ -219,18 +219,15 @@ if(Class == 4046)
 if(Class >= 7 && Class <= 20)
 	{ if(BaseLevel<99){mes "Level Insuficiente. [Nescessário LV99)";}
 	  if(JobLevel<50){mes "Level de Profissão Insuficiente. [Nescessário LV50]";}
-	  if(Zeny<1000000){mes "Zeny Insuficiente (Você precisa de 1000000z para Renascer)";}
-	  if(BaseLevel<99 || JobLevel<50 || Zeny<1000000){mes "Sinto Muito, mas Você ainda não pode Renascer...";	close2; cutin "", 255; end;}
+	  if(BaseLevel<99 || JobLevel<50){mes "Sinto Muito, mas Você ainda não pode Renascer...";	close2; cutin "", 255; end;}
 
 		mes "Deseja mesmo Renascer?";
-		mes "Será Cobrado 1.000.000z para eu realizar o meu serviço e lhe dar uma nova vida.";
 		if(select("Não:Sim, Eu Quero!")==1){close2; cutin "", 255; end;}
 
 
 
 		jobchange 4001;
 		resetlvl(1);
-		set Zeny,Zeny-1000000;  
 		if(Class==7){set FolowClass,7; set ADVJOB,Job_Lord_Knight;}
 		if(Class==14){set FolowClass,14; set ADVJOB,Job_Paladin;}
 		if(Class==9){set FolowClass,9; set ADVJOB,Job_High_Wizard;}

@@ -21,7 +21,7 @@
 // | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-prontera,154,187,4	script	Guia#prt::PrtGuide	8W_SOLDIER,{
+prontera,150,193,4	script	Guia#prt::PrtGuide	8W_SOLDIER,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Prontera]";
 	mes "Bem-vindo a Prontera, capital de Midgard.";
