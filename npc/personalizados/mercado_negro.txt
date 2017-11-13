@@ -12,7 +12,7 @@ xmas_in,31,30,3	shop	Vendedor de Chicotes	4_M_REIDIN_KURS,1950:-1,1952:-1,1954:-
 xmas_in,30,26,5	shop	Vendedor de Livros	2_M_SAGE_OLD,1553:-1,1554:-1,1555:-1,1556:-1,1557:-1,1558:-1,1550:-1,1551:-1,1552:-1
 xmas_in,41,25,3	shop	Vendedor de Luvas	4_M_MONK,1801:-1,1803:-1,1805:-1,1807:-1,1809:-1,1811:-1
 xmas_in,34,21,3	shop	Armas de Fogo	4_M_HUMAN_02,13100:4500,13151:17500,13102:20000,13104:48000
-xmas_in,35,40,3	shop	Vendedor de Flechas	4_M_04,1750:-1,1751:-1,1752:-1,1753:-1,1754:-1,1755:-1,1756:-1
+xmas_in,35,40,3	shop	Vendedor de Flechas	4_M_04,1750:-1,1770:-1,1753:-1,1765:100,1751:-1,1752:-1,1754:-1,1755:-1,1756:-1,1767:-1,1757:-1,1762:-1,1758:-1
 
 //EQUIPAMENTOS
 xmas_in,42,40,3	shop	Vendedora de Sapatos	1_F_01,2401:-1,2403:-1,2405:-1,2411:-1
