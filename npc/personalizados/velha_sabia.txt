@@ -1,7 +1,9 @@
-prontera,149,191,5	script	Velha Sábia#eAcustom	1_F_ORIENT_04,{
+prt_in,28,73,4	script	Velha Sábia#eAcustom	1_F_ORIENT_04,{
 
 //===== Configurações: =========================================
 set .@falhar, 0;	// A remoção pode falhar? [1=Sim/0=Não]
+set .@custo_zeny_fixo, 250000;	// Custo de Zenys Fixos por Equipamento
+set .@custo_zeny_carta, 50000;	// Custo de Zenys por Carta
 //==============================================================
 
 	mes "["+strnpcinfo(1)+"]";
@@ -29,7 +31,7 @@ set .@falhar, 0;	// A remoção pode falhar? [1=Sim/0=Não]
 			if (!checkweight(1202,(getequipcardcnt(.@menu)+1)))
 				callsub F_MesThenClose, "Você está com peso de mais. Vá até o armazém e guarde algumas coisas.";
 			mes "O item escolhido possui "+getequipcardcnt(.@menu)+" carta(s) equipada(s).";
-			mes "Para aprimorar minha magia, serão necessários "+((getequipcardcnt(.@menu)*25000)+2000)+"z,";
+			mes "Para aprimorar minha magia, serão necessários "+((getequipcardcnt(.@menu)*.@custo_zeny_carta)+.@custo_zeny_fixo)+"z.";
 			next;
 			if (select ("Continuar!:Desistir...") == 2) close;
 			mes "[Velha Sábia]";
