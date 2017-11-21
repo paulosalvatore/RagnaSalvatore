@@ -22,6 +22,10 @@ xmas_in,23,40,5	shop	Vendedora de Chapéus	1_F_04,2218:-1,2208:-1,2211:-1,2212:-1
 xmas_in,30,47,4	shop	Vendedora de Armaduras	4_F_CRU,2301:-1,2303:-1,2305:-1,2321:-1,2328:-1,2323:-1,2332:-1,2307:-1,2309:-1,2312:-1,2325:-1,2314:-1,2330:-1,2335:-1,2316:-1,2340:-1,2341:-1
 xmas_in,35,47,4	shop	Vendedora de Escudos	1_F_ORIENT_03,2101:-1,2103:-1,2109:-1,2105:-1,2107:-1,2110:-1,2111:-1
 
+//PERGAMINHOS
+xmas_in,38,22,3	shop	Vendedor de Assistentes	2_M_SAGE_OLD,12162:100000,12172:100000,12182:100000
+
+
 prontera,164,173,3	script	[ Mercado Negro ]::Mercado	4_M_CATMAN2,{ 
 
 	mes "[Mercado Negro]";
